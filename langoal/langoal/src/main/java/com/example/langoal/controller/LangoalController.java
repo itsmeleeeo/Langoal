@@ -25,8 +25,13 @@ public class LangoalController {
         return "index";
     }
 
-    @GetMapping(path="/register")
-    public String Register() {
+    @GetMapping(path="/registerstudent")
+    public String RegisterStudent() {
         return "RegisterUser";
+    }
+
+    @GetMapping(path = "/registertutor")
+    public String RegisterTutor() {
+        return "RegisterTutor";
     }
 }

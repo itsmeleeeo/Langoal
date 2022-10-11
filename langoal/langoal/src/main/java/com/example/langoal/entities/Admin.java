@@ -10,15 +10,12 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class Tutor {
+
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String firstName;
-    private String lastName;
+    private long id;
     private String email;
-    private String confirmEmail;
-    private long phone;
     private String password;
-    private boolean isPremium;
+    private boolean isBlocked;
 }
