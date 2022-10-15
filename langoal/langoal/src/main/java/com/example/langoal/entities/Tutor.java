@@ -16,7 +16,10 @@ public class Tutor {
     private Long id;
     private String firstName;
     private String lastName;
+
+    @Column(unique = true)
     private String email;
+
     private String confirmEmail;
     private long phone;
     private String password;

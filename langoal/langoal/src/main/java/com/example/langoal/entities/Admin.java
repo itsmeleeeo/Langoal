@@ -15,7 +15,14 @@ public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(unique = true)
     private String email;
+
     private String password;
     private boolean isBlocked;
+    private int userId;
+    private int tutorId;
+    private int advertiseId;
+
 }

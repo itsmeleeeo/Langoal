@@ -16,4 +16,6 @@ public class UserLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String userId;
+    private String languageId;
 }
