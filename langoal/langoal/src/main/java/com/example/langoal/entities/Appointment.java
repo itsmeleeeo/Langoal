@@ -16,4 +16,6 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private int userId;
+    private int languageId;
 }

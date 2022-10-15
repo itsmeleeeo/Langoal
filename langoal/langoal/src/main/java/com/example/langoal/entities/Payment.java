@@ -11,7 +11,6 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@Table(name = "Payment")
 
 public class Payment {
     @Id
@@ -19,14 +18,6 @@ public class Payment {
     private long id;
     private Date date;
     private float amountPaid;
-
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "tutor_id")
-    private Tutor tutor;
+    private int userId;
+    private int tutorId;
 }

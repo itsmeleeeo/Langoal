@@ -16,4 +16,6 @@ public class TutorLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String tutorId;
+    private String languageId;
 }
