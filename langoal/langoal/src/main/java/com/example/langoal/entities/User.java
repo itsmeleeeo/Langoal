@@ -12,22 +12,15 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String firstName;
-    private String lastName;
-
-    @Column(unique = true)
+    private String firstname;
+    private String lastname;
     private String email;
-
-    private String confirmEmail;
+    private String confirmemail;
     private long phone;
     private String password;
-    private boolean isPremium;
-
-//    @ManyToOne
-//    private Admin admin;
+    private boolean ispremium;
 }
