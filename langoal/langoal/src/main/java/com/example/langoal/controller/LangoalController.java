@@ -39,6 +39,12 @@ public class LangoalController {
         model.addAttribute("tutor", new Tutor());
         return "RegisterTutor";
     }
+
+    @GetMapping(path = "/dashboardaccount")
+    public String DashBoard() {
+        return "UserAccount";
+    }
+
     @PostMapping(path = "/save-student")
     public String registerstudent(Model model, User user, BindingResult bindingResult, ModelMap mm, HttpSession session) {
         if(bindingResult.hasErrors()) {
@@ -55,6 +61,7 @@ public class LangoalController {
             return "redirect:/";
         }
     }
+    
     @PostMapping(path = "/save-tutor")
     public String registertutor(Model model, Tutor tutor, BindingResult bindingResult, ModelMap mm, HttpSession session) {
         if(bindingResult.hasErrors()) {
