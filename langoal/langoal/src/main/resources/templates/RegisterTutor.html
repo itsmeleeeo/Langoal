@@ -9,10 +9,48 @@
   <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
-<h1>Hello, garai!</h1>
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+      <h1 class="langoalLogo">Langoal</h1>
+      <p class="langoalSlogan">Register Tutor</p>
+      <div class="bgModal">
+        <form method="post" th:action="@{registertutor}" onsubmit="alert('You have been registered')">
+          <div class="form-group  dsp-flex ">
+            <div class="col-6 col-lg-6 pr-5">
+              <label class="formLabels">First Name</label>
+              <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" th:value="${tutor.firstName}" required="required"/>
+              <span th:errors="${tutor.firstName}"></span>
+
+              <label class="formLabels">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="john@doe.com" th:value="${tutor.email}" required="required"/>
+              <span th:errors="${tutor.email}"></span>
+
+              <label class="formLabels">phone</label>
+              <input type="tel" id="phone" name="phone" class="form-control" placeholder="(xxx)xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" th:value="${tutor.phone}" required="required" maxlength="9" autocomplete="off"/>
+              <span th:errors="${tutor.phone}"></span>
+
+              <button type="submit" class="btnLogin mt-10 mb-10" th:href="@{/index}">Register</button>
+            </div>
+
+            <div class="col-6 col-lg-6 pl-5">
+
+              <label class="formLabels">Last Name</label>
+              <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" th:value="${tutor.lastName}" required="required"/>
+              <span th:errors="${tutor.lastName}"></span>
+
+              <label class="formLabels">Confirm Email</label>
+              <input type="email" class="form-control" id="confirmEmail" placeholder="john@doe.com" th:value="${tutor.confirmEmail}" required="required"/>
+              <span th:errors="${tutor.confirmEmail}"></span>
+
+              <label class="formLabels">password</label>
+              <input type="password" class="form-control" id="password" placeholder="enter your password" th:value="${tutor.password}" required="required"/>
+              <span th:errors="${tutor.password}"></span>
+              <button type="reset" class="btnForgot mt-10 mb-10">Clean Form</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
