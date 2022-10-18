@@ -238,3 +238,66 @@ a:hover {
 .accountText {
     color: var(--iconColor);
 }
+
+.border {
+    border-radius: 20px;
+}
+
+.container-fluid {
+    height: 100%;
+}
+
+.main-page {
+    background-color: white;
+    border-radius: 20px;
+    margin-left: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.sidebar {
+    background-color: white;
+    margin-left: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.logo {
+    font-family: "Shadows Into Light Two" !important;
+    font-size: 2rem;
+    text-align: center;
+    color: black;
+}
+.nav-label {
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+
+.background {
+    background-color: rgba(54, 53, 55, 0.1)
+}
+
+.navigation li {
+    width: 100%;
+
+}
+
+.nav-item {
+    font-size: 32px;
+}
+
+.nav-item > a {
+    color: #363537;
+}
+
+.nav-item > a:hover {
+    color: #363537;
+}
+
+.nav-item:hover {
+
+    background-color: rgba(237, 125, 58, 0.1);
+}
