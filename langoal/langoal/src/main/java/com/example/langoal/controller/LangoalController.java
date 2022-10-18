@@ -34,4 +34,9 @@ public class LangoalController {
     public String RegisterTutor() {
         return "RegisterTutor";
     }
+
+    @GetMapping(path = "/dashboardaccount")
+    public String DashBoard() {
+        return "UserAccount";
+    }
 }
