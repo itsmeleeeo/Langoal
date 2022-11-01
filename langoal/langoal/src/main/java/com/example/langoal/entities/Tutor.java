@@ -8,20 +8,15 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Getter
-@Setter
 public class Tutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String firstName;
-    private String lastName;
-
-    @Column(unique = true)
+    private long id;
+    private String firstname;
+    private String lastname;
     private String email;
-
-    private String confirmEmail;
+    private String confirmemail;
     private long phone;
     private String password;
-    private boolean isPremium;
+    private int ispremium;
 }
