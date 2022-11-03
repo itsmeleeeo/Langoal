@@ -6,7 +6,6 @@ import com.example.langoal.repository.TutorRepository;
 import com.example.langoal.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.management.Query;
+import javax.persistence.Convert;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @SessionAttributes({"a", "e"})
@@ -27,8 +28,6 @@ import java.util.List;
 public class LangoalController {
     @Autowired private UserRepository userRepository;
     @Autowired private TutorRepository tutorRepository;
-
-    @Autowired private PasswordEncoder passwordEncoder;
     static int num = 0;
 
     //GET REQUESTS
@@ -61,8 +60,10 @@ public class LangoalController {
         if(bindingResult.hasErrors()) {
             return "RegisterUser";
         } else {
+            String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
             String password = user.getPassword();
-            user.setPassword(passwordEncoder.encode(password));
+            password = hash + password;
+            user.setPassword(password);
             userRepository.save(user);
             return "redirect:/";
         }
@@ -73,25 +74,37 @@ public class LangoalController {
         if(bindingResult.hasErrors()) {
             return "RegisterTutor";
         } else {
+            String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
             String password = tutor.getPassword();
-            tutor.setPassword(passwordEncoder.encode(password));
+            password = hash + password;
+            tutor.setPassword(password);
             tutorRepository.save(tutor);
             return "redirect:/";
         }
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String Login(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email, @RequestParam(name = "password") String password,@RequestParam(defaultValue = "false", required = true, value = "return") Boolean found) {
-        email = user.getEmail();
-        password = user.getPassword();
+    @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
+    public String LoginStudent(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email, @RequestParam(name = "password") String password, @RequestParam(defaultValue = "false", required = true, value = "return") Boolean found) {
+        String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
+        List<User> users;
+        String userEmail = user.getEmail();
+        String userPassword = user.getPassword();
+        String newUserPassword = hash + userPassword;
 
-        String userEmail = userRepository.findUserByEmail(email).toString();
-        String userPassword = userRepository.findUserByPassword(password).toString();
-        if(email !=  userEmail|| password != userPassword) {
-            return "redirect:/";
-        } else if (email.equals(userEmail) && password.equals(userPassword)) {
-            found = true;
+        users = userRepository.findUserByEmailAndPassword(userEmail, newUserPassword);
+
+        List<Tutor> tutors;
+        String tutorEmail = tutor.getEmail();
+        String tutorPassword = tutor.getPassword();
+        String newTutorPassword = hash + tutorPassword;
+
+        tutors = tutorRepository.findByEmailAndPassword(tutorEmail, newTutorPassword);
+
+        if(users.size() == 1) {
+            return Dashboard();
+        } else if (tutors.size() == 1) {
+            return Dashboard();
         }
-        return Dashboard();
+        return "redirect:/";
     }
 }
