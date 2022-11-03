@@ -22,16 +22,6 @@ h1,h2,h3,h4,h5,h6,p,label {
     font-family: 'Quicksand';
 }
 
-a {
-    text-decoration: none !important;
-    color: var(--sideBar) !important;
-}
-
-a:hover {
-    text-decoration: none !important;
-    color: var(--sideBar) !important;
-}
-
 .dsp-flex {
     display: flex;
     align-content: center;
@@ -233,6 +223,13 @@ a:hover {
 .accountCreate {
     color: var(--sideBar);
     cursor: pointer;
+    text-decoration: none !important;
+}
+
+.accountCreate:hover {
+    color: var(--sideBar);
+    cursor: pointer;
+    text-decoration: none !important;
 }
 
 .accountText {
