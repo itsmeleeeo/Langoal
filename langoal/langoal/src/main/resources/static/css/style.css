@@ -298,3 +298,139 @@ h1,h2,h3,h4,h5,h6,p,label {
 
     background-color: rgba(237, 125, 58, 0.1);
 }
+/* user account */
+
+.user-container {
+    border: 1px solid rgba(54, 53, 55, 0.3);
+    border-radius: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  
+  .user_img {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .tutor_img {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .btn-confirm {
+    background-color: white;
+    color: #0cce6b;
+    border: 2px solid #0cce6b;
+    border-radius: 50px;
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+    margin-right: 20px;
+  }
+  
+  .btn-report {
+    background-color: white;
+    color: #ef2d56;
+    border: 2px solid #ef2d56;
+    border-radius: 50px;
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+  }
+  
+  .btn-report:hover {
+    background-color: #ef2d56;
+    color: white;
+  }
+  
+  .btn-confirm:hover {
+    background-color: #0cce6b;
+    color: white;
+  }
+  
+  .main-page-h {
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ed7d3a;
+  }
+  
+  .main-page-p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #363537;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .list_languages {
+    list-style: none;
+  }
+  
+  .list_languages li {
+    margin-right: 20px;
+  }
+  
+  /* user settings page */
+  
+  .user-settings {
+    list-style: none;
+    border-radius: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 40px;
+  }
+  
+  .user-settings li {
+    border-bottom: 1px solid rgba(54, 53, 55, 0.3);
+    font-size: 25px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .main-page-span {
+    margin-left: 20px;
+  }
+  
+  /* find partner page */
+  
+  .language_list a:hover {
+    color: #ed7d3a;
+  }
+  
+  .language_list a:active {
+    color: white;
+    background-color: #ed7d3a;
+  }
+  
+  .toggle {
+    font-family: "Open Sans", sans-serif;
+    font-size: 20px;
+    text-decoration: none;
+    color: #363537;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  
+  }
+  
+  .dropdown-toggle::after {
+    margin-left: 60px;
+  }
+  .toggle:hover {
+    color: rgba(54, 53, 55, 0.8)
+  }
+  
+  .partner {
+    background-color: #f8f8f8;
+    border-radius: 20px;
+  }
+  
+  .partner>div {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+  
+  .partner>div:last-child {
+    border-bottom: none;
+  }
