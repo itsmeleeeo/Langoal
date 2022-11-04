@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,26 +8,26 @@
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
-<body>
+<body class="loginBody">
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12">
       <h1 class="langoalLogo">Langoal</h1>
       <p class="langoalSlogan">Register Tutor</p>
       <div class="bgModal">
-        <form method="post" th:action="@{registertutor}" onsubmit="alert('You have been registered')">
+        <form method="post" th:action="@{tutor}">
           <div class="form-group  dsp-flex ">
             <div class="col-6 col-lg-6 pr-5">
               <label class="formLabels">First Name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" th:value="${tutor.firstName}" required="required"/>
-              <span th:errors="${tutor.firstName}"></span>
+              <input type="text" class="form-control" name="firstname" placeholder="Enter your first name" th:value="${tutor.firstname}" required="required"/>
+              <span th:errors="${tutor.firstname}"></span>
 
               <label class="formLabels">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="john@doe.com" th:value="${tutor.email}" required="required"/>
+              <input type="email" class="form-control" name="email" placeholder="john@doe.com" th:value="${tutor.email}" required="required"/>
               <span th:errors="${tutor.email}"></span>
 
               <label class="formLabels">phone</label>
-              <input type="tel" id="phone" name="phone" class="form-control" placeholder="(xxx)xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" th:value="${tutor.phone}" required="required" maxlength="9" autocomplete="off"/>
+              <input type="tel" class="form-control" name="phone" placeholder="(xxx)xxx-xxxx" th:value="${tutor.phone}" required="required" maxlength="9" autocomplete="off"/>
               <span th:errors="${tutor.phone}"></span>
 
               <button type="submit" class="btnLogin mt-10 mb-10" th:href="@{/index}">Register</button>
@@ -36,15 +36,15 @@
             <div class="col-6 col-lg-6 pl-5">
 
               <label class="formLabels">Last Name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" th:value="${tutor.lastName}" required="required"/>
-              <span th:errors="${tutor.lastName}"></span>
+              <input type="text" class="form-control" name="lastname" placeholder="Enter your last name" th:value="${tutor.lastname}" required="required"/>
+              <span th:errors="${tutor.lastname}"></span>
 
               <label class="formLabels">Confirm Email</label>
-              <input type="email" class="form-control" id="confirmEmail" placeholder="john@doe.com" th:value="${tutor.confirmEmail}" required="required"/>
-              <span th:errors="${tutor.confirmEmail}"></span>
+              <input type="email" class="form-control" name="confirmemail" placeholder="john@doe.com" th:value="${tutor.confirmemail}" required="required"/>
+              <span th:errors="${tutor.confirmemail}"></span>
 
               <label class="formLabels">password</label>
-              <input type="password" class="form-control" id="password" placeholder="enter your password" th:value="${tutor.password}" required="required"/>
+              <input type="password" class="form-control" name="password" placeholder="enter your password" th:value="${tutor.password}" required="required"/>
               <span th:errors="${tutor.password}"></span>
               <button type="reset" class="btnForgot mt-10 mb-10">Clean Form</button>
             </div>
@@ -57,10 +57,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>
-</body>
-</html></title>
-</head>
-<body>
-
 </body>
 </html>
