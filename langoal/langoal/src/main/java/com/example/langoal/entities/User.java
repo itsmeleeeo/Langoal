@@ -19,4 +19,5 @@ public class User {
     private long phone;
     private String password;
     private int ispremium;
+    private String image;
 }
