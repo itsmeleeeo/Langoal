@@ -36,6 +36,16 @@ public class LangoalController {
         return "index";
     }
 
+    @RequestMapping(value = "/account", method = RequestMethod.GET)
+    public String Account() {
+        return "AccountSettings";
+    }
+
+    @RequestMapping(value = "/premium", method = RequestMethod.GET)
+    public String Premium() {
+        return "PremiumAccount";
+    }
+
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String Dashboard() {
         return "UserAccount";
@@ -45,9 +55,14 @@ public class LangoalController {
     public String FindTutor() {
         return "FindTutor";
     }
+    
+    @RequestMapping(value = "/findpartner", method = RequestMethod.GET)
+    public String FindPartner() {
+        return "FindPartner";
+    }
 
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
-    public String Settings() {
+    public String UserSettings() {
         return "UserSettings";
     }
 
@@ -100,7 +115,7 @@ public class LangoalController {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
-    public String LoginStudent(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email, @RequestParam(name = "password") String password, @RequestParam(defaultValue = "false", required = true, value = "return") Boolean found) {
+    public String Login(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email, @RequestParam(name = "password") String password, @RequestParam(defaultValue = "false", required = true, value = "return") Boolean found) {
         String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
         List<User> users;
         String userEmail = user.getEmail();
