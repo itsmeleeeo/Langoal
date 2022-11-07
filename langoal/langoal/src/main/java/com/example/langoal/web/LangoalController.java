@@ -51,6 +51,11 @@ public class LangoalController {
         return "UserAccount";
     }
 
+    @RequestMapping(value = "/findtutor", method = RequestMethod.GET)
+    public String FindTutor() {
+        return "FindTutor";
+    }
+    
     @RequestMapping(value = "/findpartner", method = RequestMethod.GET)
     public String FindPartner() {
         return "FindPartner";
@@ -71,6 +76,12 @@ public class LangoalController {
     public String RegisterTutor(Model model) {
         model.addAttribute("tutor", new Tutor());
         return "RegisterTutor";
+    }
+
+    @RequestMapping(value = "/findpartner", method = RequestMethod.GET)
+    public String FindPartner(Model model) {
+        model.addAttribute("tutor", new Tutor());
+        return "FindPartner";
     }
 
     //POST REQUESTS
