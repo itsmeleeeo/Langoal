@@ -48,11 +48,19 @@ public class LangoalController {
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String Dashboard() {
+
         return "UserAccount";
     }
 
+    @RequestMapping(value = "/findtutor", method = RequestMethod.GET)
+    public String FindTutor(Model model) {
+        model.addAttribute("tutor", new Tutor());
+        return "FindTutor";
+    }
+    
     @RequestMapping(value = "/findpartner", method = RequestMethod.GET)
-    public String FindPartner() {
+    public String FindPartner(Model model) {
+        model.addAttribute("user", new User());
         return "FindPartner";
     }
 
@@ -71,6 +79,11 @@ public class LangoalController {
     public String RegisterTutor(Model model) {
         model.addAttribute("tutor", new Tutor());
         return "RegisterTutor";
+    }
+
+    @RequestMapping(value = "/verification", method = RequestMethod.GET)
+    public String EmailVerification(){
+        return "EmailVerification";
     }
 
     //POST REQUESTS
@@ -104,7 +117,7 @@ public class LangoalController {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
-    public String Login(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email, @RequestParam(name = "password") String password, @RequestParam(defaultValue = "false", required = true, value = "return") Boolean found) {
+    public String Login(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email, @RequestParam(name = "password") String password, String firstname, @RequestParam(defaultValue = "false", required = true, value = "return") Boolean found) {
         String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
         List<User> users;
         String userEmail = user.getEmail();
@@ -126,5 +139,31 @@ public class LangoalController {
             return Dashboard();
         }
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/account", method = RequestMethod.POST)
+    public String accountinfo(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email,@RequestParam(name = "password") String password,@RequestParam(name = "phone") long phone) {
+        email = user.getEmail();
+        String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
+        List<User> users;
+
+        users = userRepository.findUserByEmail(email);
+        model.addAttribute("listUsers", users);
+        if (users.size() == 1) {
+            for (int i = 0; i < users.size(); i++) {
+                String firstname = users.get(i).getFirstname();
+                String lastname = users.get(i).getLastname();
+                phone = users.get(i).getPhone();
+                password = users.get(i).getPassword();
+            }
+            return "AccountSettings";
+        } else if (users.size() == 1) {
+            password = hash + password;
+            user.setPassword(password);
+            userRepository.save(user);
+        } else {
+            return Dashboard();
+        }
+        return Dashboard();
     }
 }

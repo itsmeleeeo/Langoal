@@ -14,9 +14,12 @@ public class User {
     private long id;
     private String firstname;
     private String lastname;
+    @Column(unique = true)
     private String email;
     private String confirmemail;
     private long phone;
     private String password;
     private int ispremium;
+    private String image;
+    private String nativelanguage;
 }
