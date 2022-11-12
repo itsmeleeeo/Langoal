@@ -9,4 +9,8 @@ import java.util.List;
 public interface TutorRepository extends JpaRepository<Tutor, Long> {
     List<Tutor> findTutorById (long kw);
     List<Tutor> findByEmailAndPassword(String email, String password);
+    List<Tutor> findUserById (long kw);
+    List<Tutor> findUserByEmail(String email);
+    List<Tutor> findUserByPassword(String password);
+    List <Tutor> findUserByFirstname(String email);
 }

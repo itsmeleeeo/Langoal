@@ -58,95 +58,51 @@
     </div>
 
     <!-- MAIN PAGE -->
-    <div class="col-9 main-page">
+      <div class="col-9 main-page">
 
-      <div class="container">
-        <!-- USER ACCOUNT INFO -->
-        <div class="user-container mt-5 p-4">
-          <div class="row mt-2">
-            <div class="col d-flex justify-content-center">
-              <p class="text-center main-page-p mb-4">Hey userName!</p>
-            </div>
-          </div>
+        <div class="container">
+          <!-- USER ACCOUNT INFO -->
+          <div class="user-container mt-5 p-4 mb-5">
+<!--            <div class="row mt-2">-->
+<!--              <div class="col d-flex justify-content-center">-->
+<!--                <p class="text-center main-page-p mb-4">Hey userName!</p>-->
+<!--              </div>-->
+<!--            </div>-->
 
-          <div class="row mb-2">
-            <div class="col d-flex justify-content-center">
-              <img class="user_img" src="img/userPhoto.png" alt="">
-            </div>
-          </div>
+            <form method="post" th:action="@{account}">
+              <div class="form-group  dsp-flex" th:each="p:${listUsers}">
+                <div class="col-6 col-lg-6 pr-5">
+                  <label class="userLabels">First Name</label>
+                  <input type="text" class="form-control" name="firstname" th:value="${p.firstname}" placeholder="Enter your first name" required="required" readonly/>
 
+                  <label class="userLabels">Phone</label>
+                  <input type="tel" class="form-control" name="phone" placeholder="(xxx)xxx-xxxx" th:value="${p.phone}" required="required" maxlength="9" autocomplete="off" />
 
-          <div class="row mb-2">
-            <h2 class="main-page-h">MY LANGUAGES</h2>
-          </div>
+                  <label class="userLabels">Native Language</label>
+                  <select class="form-control">
+                    <option value="0">Select language</option>
+                    <option th:each="user:${T(com.example.langoal.entities.Languages).values()}" th:value="${user}" th:text="${user}"></option>
+                  </select>
+                </div>
 
-          <div class="row mb-2">
-            <ul class="list_languages d-flex flex-row">
-              <li>
-                <img src="img/china-flag.png" alt="">
-              </li>
-              <li>
-                <img src="img/london-flag.png" alt="">
-              </li>
-              <li>
-                <img src="img/plus.png" alt="">
-              </li>
-            </ul>
+                <div class="col-6 col-lg-6 pl-5">
 
-          </div>
+                  <label class="userLabels">Last Name</label>
+                  <input type="text" class="form-control" placeholder="Enter your last name" name="lastname" th:value="${p.lastname}" required="required" readonly/>
 
-          <div class="row">
-            <div class="col d-flex flex-column">
-              <h2 class="main-page-h">ACCOUNT TYPE</h2>
-              <p class="main-page-p">Standart</p>
-            </div>
-            <div class="col d-flex flex-column">
-              <h2 class="main-page-h">GET PREMIUM </h2>
-              <div class="d-flex flex-row justify-content-start">
-                <p class="main-page-p align-self-center">Get rid of the ads </p>
-                <span class="align-self-center main-page-span">
-                                      <img src="img/arrow.png" alt="">
-                                  </span>
+                  <label class="userLabels">password</label>
+                  <input type="password" class="form-control" name="password" placeholder="enter your password" th:value="${p.password}" required="required"/>
+                </div>
               </div>
-            </div>
+              <div class="col-12 col-lg-12 pl-5">
+                <button type="submit" class="btnLogin mt-10 mb-10" th:href="@{/UserAccount}">Update</button>
+                <button type="reset" class="btnForgot mt-10 mb-10">Clear</button>
+              </div>
+            </form>
           </div>
 
         </div>
-
-        <div class="user-container mt-5 p-4 mb-30">
-          <div class="row mb-2">
-            <h2 class="main-page-h">CONFIRM SESSION</h2>
-          </div>
-          <div class="row">
-            <div class="col-8 d-flex">
-              <div class="col-3">
-                <img class="tutor_img" src="img/userPhoto.png" alt="">
-              </div>
-              <div class="col d-flex flex-column justify-content-center">
-
-                <p class="main-page-p">tutorName</p>
-                <p>+1 62 563 2888</p>
-
-              </div>
-              <div class="col  align-self-center">
-                <p>$49</p>
-              </div>
-
-            </div>
-
-
-            <div class="col-4 d-flex align-self-center">
-
-              <button type="button" class="btn-confirm">Confirm</button>
-              <button type="button" class="btn-report">Report</button>
-
-            </div>
-          </div>
-
-        </div>
-
       </div>
-    </div>
   </div>
 </div>
 
