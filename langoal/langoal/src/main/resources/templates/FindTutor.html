@@ -164,127 +164,23 @@
 
               <!-- TUTOR LIST -->
               <div class="col d-flex flex-column partner mb-5">
-                <div class="col d-flex justify-content-between">
+                <div class="col d-flex justify-content-between" th:each="tutor:${listTutors}">
                   <div
                     class="col-4 m-4 d-flex flex-column justify-content-center"
                   >
                     <img
                       class="tutor-picture"
-                      src="img/tutorPicture.png"
+                      src="@{/tutorPicture.png}"
                       alt=""
                     />
                   </div>
                   <div class="col-3 align-self-center">
-                    <p class="main-page-p">Victor Lun</p>
+                    <p class="main-page-p" th:text="${tutor.getFirstname()}"></p>
                   </div>
                   <div
                     class="col-3 m-3 d-flex flex-column justify-content-center"
                   >
-                    <p class="main-page-p align-self-center mb-3">20$/Lesson</p>
-                    <button
-                      type="button"
-                      class="btn-confirm ml-5 align-self-bottom"
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-
-                <div class="col d-flex justify-content-between">
-                  <div
-                    class="col-4 m-4 d-flex flex-column justify-content-center"
-                  >
-                    <img
-                      class="tutor-picture"
-                      src="img/tutorPicture.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="col-3 align-self-center">
-                    <p class="main-page-p">Victor Lun</p>
-                  </div>
-                  <div
-                    class="col-3 m-3 d-flex flex-column justify-content-center"
-                  >
-                    <p class="main-page-p align-self-center mb-3">20$/Lesson</p>
-                    <button
-                      type="button"
-                      class="btn-confirm ml-5 align-self-bottom"
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-
-                <div class="col d-flex justify-content-between">
-                  <div
-                    class="col-4 m-4 d-flex flex-column justify-content-center"
-                  >
-                    <img
-                      class="tutor-picture"
-                      src="img/tutorPicture.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="col-3 align-self-center">
-                    <p class="main-page-p">Victor Lun</p>
-                  </div>
-                  <div
-                    class="col-3 m-3 d-flex flex-column justify-content-center"
-                  >
-                    <p class="main-page-p align-self-center mb-3">20$/Lesson</p>
-                    <button
-                      type="button"
-                      class="btn-confirm ml-5 align-self-bottom"
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-
-                <div class="col d-flex justify-content-between">
-                  <div
-                    class="col-4 m-4 d-flex flex-column justify-content-center"
-                  >
-                    <img
-                      class="tutor-picture"
-                      src="img/tutorPicture.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="col-3 align-self-center">
-                    <p class="main-page-p">Victor Lun</p>
-                  </div>
-                  <div
-                    class="col-3 m-3 d-flex flex-column justify-content-center"
-                  >
-                    <p class="main-page-p align-self-center mb-3">20$/Lesson</p>
-                    <button
-                      type="button"
-                      class="btn-confirm ml-5 align-self-bottom"
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-
-                <div class="col d-flex justify-content-between">
-                  <div
-                    class="col-4 m-4 d-flex flex-column justify-content-center"
-                  >
-                    <img
-                      class="tutor-picture"
-                      src="img/tutorPicture.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="col-3 align-self-center">
-                    <p class="main-page-p">Victor Lun</p>
-                  </div>
-                  <div
-                    class="col-3 m-3 d-flex flex-column justify-content-center"
-                  >
-                    <p class="main-page-p align-self-center mb-3">20$/Lesson</p>
+                    <p class="main-page-p align-self-center mb-3" th:text="${tutor.getNativelanguage()}"></p>
                     <button
                       type="button"
                       class="btn-confirm ml-5 align-self-bottom"

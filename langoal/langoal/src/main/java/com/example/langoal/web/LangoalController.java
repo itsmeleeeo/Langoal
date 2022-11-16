@@ -54,7 +54,9 @@ public class LangoalController {
 
     @RequestMapping(value = "/findtutor", method = RequestMethod.GET)
     public String FindTutor(Model model) {
-        model.addAttribute("tutor", new Tutor());
+        List<Tutor> tutors;
+        tutors = tutorRepository.findAll();
+        model.addAttribute("listTutors", tutors);
         return "FindTutor";
     }
     
