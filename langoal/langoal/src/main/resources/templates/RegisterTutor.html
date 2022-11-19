@@ -39,9 +39,11 @@
               <input type="text" class="form-control" name="lastname" placeholder="Enter your last name" th:value="${tutor.lastname}" required="required"/>
               <span th:errors="${tutor.lastname}"></span>
 
-              <label class="formLabels">Confirm Email</label>
-              <input type="email" class="form-control" name="confirmemail" placeholder="john@doe.com" th:value="${tutor.confirmemail}" required="required"/>
-              <span th:errors="${tutor.confirmemail}"></span>
+              <label class="formLabels">Native Language</label>
+              <select class="form-control" th:field="*{tutor.nativelanguage}" id="nativelanguage">
+                <option value="0">Select language</option>
+                <option th:each="user:${T(com.example.langoal.entities.Languages).values()}" th:value="${tutor}" th:text="${tutor}"></option>
+              </select>
 
               <label class="formLabels">password</label>
               <input type="password" class="form-control" name="password" placeholder="enter your password" th:value="${tutor.password}" required="required"/>
