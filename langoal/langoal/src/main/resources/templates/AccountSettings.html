@@ -63,23 +63,18 @@
         <div class="container">
           <!-- USER ACCOUNT INFO -->
           <div class="user-container mt-5 p-4 mb-5">
-<!--            <div class="row mt-2">-->
-<!--              <div class="col d-flex justify-content-center">-->
-<!--                <p class="text-center main-page-p mb-4">Hey userName!</p>-->
-<!--              </div>-->
-<!--            </div>-->
 
             <form method="post" th:action="@{account}">
               <div class="form-group  dsp-flex" th:each="p:${listUsers}">
                 <div class="col-6 col-lg-6 pr-5">
                   <label class="userLabels">First Name</label>
-                  <input type="text" class="form-control" name="firstname" th:value="${p.firstname}" placeholder="Enter your first name" required="required" readonly/>
+                  <input type="text" class="form-control" name="firstname" th:value="${p.firstname}" placeholder="Enter your first name" required="required" disabled/>
 
                   <label class="userLabels">Phone</label>
                   <input type="tel" class="form-control" name="phone" placeholder="(xxx)xxx-xxxx" th:value="${p.phone}" required="required" maxlength="9" autocomplete="off" />
 
                   <label class="userLabels">Native Language</label>
-                  <select class="form-control">
+                  <select class="form-control" th:field="*{user.nativelanguage}" id="nativelanguage">
                     <option value="0">Select language</option>
                     <option th:each="user:${T(com.example.langoal.entities.Languages).values()}" th:value="${user}" th:text="${user}"></option>
                   </select>
@@ -88,7 +83,7 @@
                 <div class="col-6 col-lg-6 pl-5">
 
                   <label class="userLabels">Last Name</label>
-                  <input type="text" class="form-control" placeholder="Enter your last name" name="lastname" th:value="${p.lastname}" required="required" readonly/>
+                  <input type="text" class="form-control" placeholder="Enter your last name" name="lastname" th:value="${p.lastname}" required="required" disabled/>
 
                   <label class="userLabels">password</label>
                   <input type="password" class="form-control" name="password" placeholder="enter your password" th:value="${p.password}" required="required"/>
