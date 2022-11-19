@@ -15,7 +15,7 @@
             <h1 class="langoalLogo">Langoal</h1>
             <p class="langoalSlogan">Register User</p>
             <div class="bgModal">
-                <form method="post" th:action="@{student}">
+                <form method="post" th:action="@{student}" onsubmit="alert('Account Created')">
                     <div class="form-group  dsp-flex ">
                         <div class="col-6 col-lg-6 pr-5">
                             <label class="formLabels">First Name</label>
@@ -39,9 +39,11 @@
                             <input type="text" class="form-control" name="lastname" placeholder="Enter your last name" th:value="${user.lastname}" required="required"/>
                             <span th:errors="${user.lastname}"></span>
 
-                            <label class="formLabels">Confirm Email</label>
-                            <input type="email" class="form-control" name="confirmemail" placeholder="john@doe.com" th:value="${user.confirmemail}" required="required"/>
-                            <span th:errors="${user.confirmemail}"></span>
+                            <label class="formLabels">Native Language</label>
+                            <select class="form-control" th:field="*{user.nativelanguage}" id="nativelanguage">
+                                <option value="0">Select language</option>
+                                <option th:each="user:${T(com.example.langoal.entities.Languages).values()}" th:value="${user}" th:text="${user}"></option>
+                            </select>
 
                             <label class="formLabels">password</label>
                             <input type="password" class="form-control" name="password" placeholder="enter your password" th:value="${user.password}" required="required"/>

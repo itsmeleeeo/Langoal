@@ -48,7 +48,6 @@ public class LangoalController {
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String Dashboard() {
-
         return "UserAccount";
     }
 
@@ -134,36 +133,50 @@ public class LangoalController {
         tutors = tutorRepository.findByEmailAndPassword(tutorEmail, newTutorPassword);
 
         if(users.size() == 1) {
-            return Dashboard();
+            return "UserAccount";
         } else if (tutors.size() == 1) {
-            return Dashboard();
+            return "UserAccount";
         }
         return "redirect:/";
     }
 
     @RequestMapping(value = "/account", method = RequestMethod.POST)
-    public String accountinfo(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email,@RequestParam(name = "password") String password,@RequestParam(name = "phone") long phone) {
+    public String accountinfo(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email) {
         email = user.getEmail();
         String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
         List<User> users;
+        List<Tutor> tutors;
+        String password;
+        Long phone;
+        String language;
 
         users = userRepository.findUserByEmail(email);
-        model.addAttribute("listUsers", users);
-        if (users.size() == 1) {
-            for (int i = 0; i < users.size(); i++) {
-                String firstname = users.get(i).getFirstname();
-                String lastname = users.get(i).getLastname();
-                phone = users.get(i).getPhone();
-                password = users.get(i).getPassword();
-            }
+        tutors = tutorRepository.findUserByEmail(email);
+
+        if(users.size() == 1) {
+            model.addAttribute("listUsers", users);
             return "AccountSettings";
-        } else if (users.size() == 1) {
+        } else if(tutors.size() == 1){
+            model.addAttribute("listUsers", tutors);
+            return "AccountSettings";
+        }
+
+        if(users.size() == 1) {
+            password = user.getPassword();
+            phone = user.getPhone();
+            language = user.getNativelanguage();
             password = hash + password;
             user.setPassword(password);
             userRepository.save(user);
+
         } else {
-            return Dashboard();
+            password = tutor.getPassword();
+            phone = tutor.getPhone();
+            language = tutor.getNativelanguage();
+            password = hash + password;
+            tutor.setPassword(password);
+            tutorRepository.save(tutor);
         }
-        return Dashboard();
+        return "UserAccount";
     }
 }
