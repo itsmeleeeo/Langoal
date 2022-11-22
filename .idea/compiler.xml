@@ -7,17 +7,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+<<<<<<< HEAD
         <module name="langoal" />
+=======
+>>>>>>> 11ac5c2cee0433216dc5dc5fba88c2abbe31cd8a
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="langoal" target="17" />
+<<<<<<< HEAD
       <module name="Studentpractice" target="17" />
+=======
+>>>>>>> 11ac5c2cee0433216dc5dc5fba88c2abbe31cd8a
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+<<<<<<< HEAD
       <module name="Studentpractice" options="-parameters" />
+=======
+>>>>>>> 11ac5c2cee0433216dc5dc5fba88c2abbe31cd8a
       <module name="langoal" options="-parameters" />
     </option>
   </component>

@@ -7,10 +7,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <link th:href="@{/css/style.css}" rel="stylesheet">
-  <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
-          rel="stylesheet"
-  />
 </head>
 <body>
 
@@ -21,32 +17,32 @@
     <div class="col-2 border sidebar">
       <div class="d-flex flex-column">
         <div class="row justify-content-center m-3">
-          <a href="/" class="logo text-decoration-none"> Langoal </a>
+          <a th:href="@{/dashboard}" class="logo accountCreate"> Langoal </a>
         </div>
         <ul
                 class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start navigation"
         >
           <li class="nav-item mb-2 w-100">
-            <a href="#" class="nav-link align-middle px-0">
+            <a th:href="@{/verification}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-user"></i>
               <span class="nav-label">ACCOUNT</span>
             </a>
           </li>
 
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link align-middle px-0">
+            <a th:href="@{/findpartner}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-magnifying-glass"></i>
               <span class="nav-label">FIND PARTNER</span>
             </a>
           </li>
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link align-middle px-0">
+            <a th:href="@{/premium}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-crown"></i>
               <span class="nav-label">GET PREMIUM</span>
             </a>
           </li>
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link align-middle px-0">
+            <a th:href="@{/settings}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-gear"></i>
               <span class="nav-label">SETTINGS</span>
             </a>
@@ -67,11 +63,14 @@
       <div class="container">
         <!-- USER ACCOUNT INFO -->
         <div class="user-container mt-5 p-4">
+<<<<<<< HEAD
           <div class="row mt-2">
             <div class="col d-flex justify-content-center">
               <p class="text-center main-page-p mb-4">Hey userName!</p>
             </div>
           </div>
+=======
+>>>>>>> 11ac5c2cee0433216dc5dc5fba88c2abbe31cd8a
 
           <div class="row mb-2">
             <div class="col d-flex justify-content-center">
@@ -117,7 +116,11 @@
 
         </div>
 
+<<<<<<< HEAD
         <div class="user-container mt-5 mb-5 p-4">
+=======
+        <div class="user-container mt-5 p-4 mb-30">
+>>>>>>> 11ac5c2cee0433216dc5dc5fba88c2abbe31cd8a
           <div class="row mb-2">
             <h2 class="main-page-h">CONFIRM SESSION</h2>
           </div>

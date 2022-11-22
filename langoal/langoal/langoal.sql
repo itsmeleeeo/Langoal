@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2022 at 01:02 AM
+-- Generation Time: Nov 12, 2022 at 10:34 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `id` bigint(20) NOT NULL,
+  `advertise_id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `is_blocked` bit(1) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `tutor_id` int(11) NOT NULL,
-  `isBlocked` tinyint(1) NOT NULL,
-  `advertise_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -44,11 +44,12 @@ CREATE TABLE `admin` (
 --
 
 CREATE TABLE `advertisement` (
-  `id` int(11) NOT NULL,
-  `companyName` varchar(255) DEFAULT NULL,
-  `companyEmail` varchar(255) DEFAULT NULL,
-  `datePaid` date DEFAULT NULL,
-  `amountPaid` float DEFAULT NULL
+  `id` bigint(20) NOT NULL,
+  `amount_paid` float NOT NULL,
+  `company_email` varchar(255) DEFAULT NULL,
+  `company_name` varchar(255) DEFAULT NULL,
+  `date_paid` datetime DEFAULT NULL,
+  `date_posted` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -58,9 +59,9 @@ CREATE TABLE `advertisement` (
 --
 
 CREATE TABLE `appointment` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `tutor_id` int(11) DEFAULT NULL
+  `id` bigint(20) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -70,8 +71,9 @@ CREATE TABLE `appointment` (
 --
 
 CREATE TABLE `language` (
-  `id` int(11) NOT NULL,
-  `Language` varchar(255) DEFAULT NULL
+  `id` bigint(20) NOT NULL,
+  `language` varchar(255) DEFAULT NULL,
+  `language_flag` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -81,11 +83,11 @@ CREATE TABLE `language` (
 --
 
 CREATE TABLE `payment` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `tutor_id` int(11) DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `amountPaid` float DEFAULT NULL
+  `id` bigint(20) NOT NULL,
+  `amount_paid` float NOT NULL,
+  `date` datetime DEFAULT NULL,
+  `tutor_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -95,15 +97,26 @@ CREATE TABLE `payment` (
 --
 
 CREATE TABLE `tutor` (
-  `id` int(11) NOT NULL,
-  `firstName` varchar(255) DEFAULT NULL,
-  `lastName` varchar(255) DEFAULT NULL,
+  `id` bigint(20) NOT NULL,
+  `confirmemail` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `confirmEmail` varchar(255) DEFAULT NULL,
-  `phone` varchar(25) DEFAULT NULL,
-  `password` varchar(32) DEFAULT NULL,
-  `isPremium` tinyint(1) DEFAULT NULL
+  `firstname` varchar(255) DEFAULT NULL,
+  `ispremium` int(11) NOT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `phone` bigint(20) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `nativelanguage` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tutor`
+--
+
+INSERT INTO `tutor` (`id`, `confirmemail`, `email`, `firstname`, `ispremium`, `lastname`, `password`, `phone`, `image`, `nativelanguage`) VALUES
+(1, 'leo@ferreira.ca', 'leo@ferreira.ca', 'Leonardo', 0, 'Ferreira', 'Leonardo', 987654321, NULL, NULL),
+(2, 'test@test.com', 'test@test.com', 'asfasdfsdf', 0, 'dfassdfgdfgdf', 'test@test.com', 124345345, NULL, NULL),
+(3, 'diglet@poke.com', 'test@test.com', 'sadadas', 0, 'dasdasd', '$2a$10$rbfqyHWoXfYK54nJRZK7XOFLrMl9nIwi31ry/KE7HvDJuLjdS6r1K', 123423543, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,9 +125,9 @@ CREATE TABLE `tutor` (
 --
 
 CREATE TABLE `tutor_language` (
-  `id` int(11) NOT NULL,
-  `Language_id` int(11) DEFAULT NULL,
-  `tutor_id` int(11) DEFAULT NULL
+  `id` bigint(20) NOT NULL,
+  `language_id` varchar(255) DEFAULT NULL,
+  `tutor_id` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -124,15 +137,32 @@ CREATE TABLE `tutor_language` (
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `firstName` varchar(255) DEFAULT NULL,
-  `lastName` varchar(255) DEFAULT NULL,
+  `id` bigint(20) NOT NULL,
+  `confirmemail` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `confirmEmail` varchar(255) DEFAULT NULL,
-  `phone` varchar(25) DEFAULT NULL,
-  `password` varchar(32) DEFAULT NULL,
-  `isPremium` tinyint(1) DEFAULT NULL
+  `firstname` varchar(255) DEFAULT NULL,
+  `ispremium` int(11) NOT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `phone` bigint(20) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `nativelanguage` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `confirmemail`, `email`, `firstname`, `ispremium`, `lastname`, `password`, `phone`, `image`, `nativelanguage`) VALUES
+(2, 'diglet@poke.com', 'diglet@poke.com', 'digle5t', 0, 'dugtrio', '$2a$10$z.ySlIolTAHlz57POccaKe5Py5adsd', 123456789, NULL, NULL),
+(3, 'test@test.com', 'test@test.com', 'Leonardo', 0, 'Ferreira', 'dfsdf', 237842782, NULL, NULL),
+(4, 'asd@asd.com', 'asd@asd.com', 'asdasd', 0, 'asdasd', 'sdfsdfs', 123456789, NULL, NULL),
+(5, 'ads@asda', 'ads@asda', 'asdas', 0, 'dasd', 'sadasda', 378462389, NULL, NULL),
+(6, 'fsleonardo91@gmail.com', 'fsleonardo91@gmail.com', 'Leonardo', 0, 'Ferreira', '$2a$10$cAGolj3Mkmd2NT51FAScWu0ntq1nSFNWHDHW1OUjNjt8uIfAd0hEW', 123423534, NULL, NULL),
+(7, 'leonardo@leo.ca', 'leonardo@leo.ca', 'Leonardo', 0, 'Dos Santos Ferreira', '$2a$10$z.ySlIolTAHlz57POccaKe5Py5GXcIkYe98ZTwM3NiYqKJrvf2vKe', 123576989, NULL, NULL),
+(8, 'test@test.com', 'test@test.com', 'digle5t', 0, 'dugtrio', '$2a$10$z.ySlIolTAHlz57POccaKe5Py5GXcIkYe98ZTwM3NiY7q4fg8c7fg8e7f789FH47B789uibujB87BN6v786bux67v&*ty&*tdiglet', 123456789, NULL, NULL),
+(9, 'asd@asd.com', 'fsleonardo91@gmail.com', 'digle5t', 0, 'dugtrio', '$2a$10$z.ySlIolTAHlz57POccaKe5Py5GXcIkYe98ZTwM3NiY7q4fg8c7fg8e7f789FH47B789uibujB87BN6v786bux67v&*ty&*tarroz', 123456789, NULL, NULL),
+(12, 'leo@leo.ca', 'leo@leo.ca', 'leo', 0, 'leo', '$2a$10$z.ySlIolTAHlz57POccaKe5Py5leo', 123456568, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -141,9 +171,9 @@ CREATE TABLE `user` (
 --
 
 CREATE TABLE `user_language` (
-  `id` int(11) NOT NULL,
-  `Language_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL
+  `id` bigint(20) NOT NULL,
+  `language_id` varchar(255) DEFAULT NULL,
+  `user_id` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -155,9 +185,7 @@ CREATE TABLE `user_language` (
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_user_admin` (`user_id`),
-  ADD KEY `fk_tutor_admin` (`tutor_id`),
-  ADD KEY `fk_advertise` (`advertise_id`);
+  ADD UNIQUE KEY `UK_c0r9atamxvbhjjvy5j8da1kam` (`email`);
 
 --
 -- Indexes for table `advertisement`
@@ -169,9 +197,7 @@ ALTER TABLE `advertisement`
 -- Indexes for table `appointment`
 --
 ALTER TABLE `appointment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_user_appointment` (`user_id`),
-  ADD KEY `fk_tutor_appointment` (`tutor_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `language`
@@ -183,9 +209,7 @@ ALTER TABLE `language`
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_payment_user` (`user_id`),
-  ADD KEY `fk_payment_tutor` (`tutor_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tutor`
@@ -197,9 +221,7 @@ ALTER TABLE `tutor`
 -- Indexes for table `tutor_language`
 --
 ALTER TABLE `tutor_language`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_tutor_language` (`Language_id`),
-  ADD KEY `fk_tutor_id` (`tutor_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -211,9 +233,7 @@ ALTER TABLE `user`
 -- Indexes for table `user_language`
 --
 ALTER TABLE `user_language`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_user` (`user_id`),
-  ADD KEY `fk_language` (`Language_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -223,95 +243,55 @@ ALTER TABLE `user_language`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `advertisement`
 --
 ALTER TABLE `advertisement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tutor`
 --
 ALTER TABLE `tutor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tutor_language`
 --
 ALTER TABLE `tutor_language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_language`
 --
 ALTER TABLE `user_language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `admin`
---
-ALTER TABLE `admin`
-  ADD CONSTRAINT `fk_advertise` FOREIGN KEY (`advertise_id`) REFERENCES `advertisement` (`id`),
-  ADD CONSTRAINT `fk_tutor_admin` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`id`),
-  ADD CONSTRAINT `fk_user_admin` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `appointment`
---
-ALTER TABLE `appointment`
-  ADD CONSTRAINT `fk_tutor_appointment` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`id`),
-  ADD CONSTRAINT `fk_user_appointment` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `payment`
---
-ALTER TABLE `payment`
-  ADD CONSTRAINT `fk_payment_tutor` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`id`),
-  ADD CONSTRAINT `fk_payment_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `tutor_language`
---
-ALTER TABLE `tutor_language`
-  ADD CONSTRAINT `fk_tutor_id` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`id`),
-  ADD CONSTRAINT `fk_tutor_language` FOREIGN KEY (`Language_id`) REFERENCES `language` (`id`);
-
---
--- Constraints for table `user_language`
---
-ALTER TABLE `user_language`
-  ADD CONSTRAINT `fk_language` FOREIGN KEY (`Language_id`) REFERENCES `language` (`id`),
-  ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

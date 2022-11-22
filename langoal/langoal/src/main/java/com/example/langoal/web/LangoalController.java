@@ -36,9 +36,38 @@ public class LangoalController {
         return "index";
     }
 
+    @RequestMapping(value = "/account", method = RequestMethod.GET)
+    public String Account() {
+        return "AccountSettings";
+    }
+
+    @RequestMapping(value = "/premium", method = RequestMethod.GET)
+    public String Premium() {
+        return "PremiumAccount";
+    }
+
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String Dashboard() {
         return "UserAccount";
+    }
+
+    @RequestMapping(value = "/findtutor", method = RequestMethod.GET)
+    public String FindTutor(Model model) {
+        List<Tutor> tutors;
+        tutors = tutorRepository.findAll();
+        model.addAttribute("listTutors", tutors);
+        return "FindTutor";
+    }
+    
+    @RequestMapping(value = "/findpartner", method = RequestMethod.GET)
+    public String FindPartner(Model model) {
+        model.addAttribute("user", new User());
+        return "FindPartner";
+    }
+
+    @RequestMapping(value = "/settings", method = RequestMethod.GET)
+    public String UserSettings() {
+        return "UserSettings";
     }
 
     @RequestMapping(value="/student", method = RequestMethod.GET)
@@ -51,6 +80,11 @@ public class LangoalController {
     public String RegisterTutor(Model model) {
         model.addAttribute("tutor", new Tutor());
         return "RegisterTutor";
+    }
+
+    @RequestMapping(value = "/verification", method = RequestMethod.GET)
+    public String EmailVerification(){
+        return "EmailVerification";
     }
 
     //POST REQUESTS
@@ -84,7 +118,7 @@ public class LangoalController {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
-    public String LoginStudent(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email, @RequestParam(name = "password") String password, @RequestParam(defaultValue = "false", required = true, value = "return") Boolean found) {
+    public String Login(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email, @RequestParam(name = "password") String password, String firstname, @RequestParam(defaultValue = "false", required = true, value = "return") Boolean found) {
         String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
         List<User> users;
         String userEmail = user.getEmail();
@@ -101,10 +135,50 @@ public class LangoalController {
         tutors = tutorRepository.findByEmailAndPassword(tutorEmail, newTutorPassword);
 
         if(users.size() == 1) {
-            return Dashboard();
+            return "UserAccount";
         } else if (tutors.size() == 1) {
-            return Dashboard();
+            return "UserAccount";
         }
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/account", method = RequestMethod.POST)
+    public String accountinfo(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email) {
+        email = user.getEmail();
+        String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
+        List<User> users;
+        List<Tutor> tutors;
+        String password;
+        Long phone;
+        String language;
+
+        users = userRepository.findUserByEmail(email);
+        tutors = tutorRepository.findUserByEmail(email);
+
+        if(users.size() == 1) {
+            model.addAttribute("listUsers", users);
+            return "AccountSettings";
+        } else if(tutors.size() == 1){
+            model.addAttribute("listUsers", tutors);
+            return "AccountSettings";
+        }
+
+        if(users.size() == 1) {
+            password = user.getPassword();
+            phone = user.getPhone();
+            language = user.getNativelanguage();
+            password = hash + password;
+            user.setPassword(password);
+            userRepository.save(user);
+
+        } else {
+            password = tutor.getPassword();
+            phone = tutor.getPhone();
+            language = tutor.getNativelanguage();
+            password = hash + password;
+            tutor.setPassword(password);
+            tutorRepository.save(tutor);
+        }
+        return "UserAccount";
     }
 }

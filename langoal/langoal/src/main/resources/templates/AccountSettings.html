@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Langoal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container-fluid d-flex">
+  <div class="row flex-nowrap background flex-grow-1">
+
+    <!-- SIDE BAR -->
+    <div class="col-2 border sidebar">
+      <div class="d-flex flex-column">
+        <div class="row justify-content-center m-3">
+          <a th:href="@{/dashboard}" class="logo text-decoration-none"> Langoal </a>
+        </div>
+        <ul
+                class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start navigation"
+        >
+          <li class="nav-item mb-2 w-100">
+            <a th:href="@{/account}" class="nav-link align-middle px-0">
+              <i class="fa-solid fa-user"></i>
+              <span class="nav-label">ACCOUNT</span>
+            </a>
+          </li>
+
+          <li class="nav-item mb-2">
+            <a th:href="@{/findpartner}" class="nav-link align-middle px-0">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span class="nav-label">FIND PARTNER</span>
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a th:href="@{/premium}" class="nav-link align-middle px-0">
+              <i class="fa-solid fa-crown"></i>
+              <span class="nav-label">GET PREMIUM</span>
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a th:href="@{/settings}" class="nav-link align-middle px-0">
+              <i class="fa-solid fa-gear"></i>
+              <span class="nav-label">SETTINGS</span>
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link align-middle px-0">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <span class="nav-label">LOG OUT</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MAIN PAGE -->
+      <div class="col-9 main-page">
+
+        <div class="container">
+          <!-- USER ACCOUNT INFO -->
+          <div class="user-container mt-5 p-4 mb-5">
+
+            <form method="post" th:action="@{account}">
+              <div class="form-group  dsp-flex" th:each="p:${listUsers}">
+                <div class="col-6 col-lg-6 pr-5">
+                  <label class="userLabels">First Name</label>
+                  <input type="text" class="form-control" name="firstname" th:value="${p.firstname}" placeholder="Enter your first name" required="required" disabled/>
+
+                  <label class="userLabels">Phone</label>
+                  <input type="tel" class="form-control" name="phone" placeholder="(xxx)xxx-xxxx" th:value="${p.phone}" required="required" maxlength="9" autocomplete="off" />
+
+                  <label class="userLabels">Native Language</label>
+                  <select class="form-control" th:field="*{user.nativelanguage}" id="nativelanguage">
+                    <option value="0">Select language</option>
+                    <option th:each="user:${T(com.example.langoal.entities.Languages).values()}" th:value="${user}" th:text="${user}"></option>
+                  </select>
+                </div>
+
+                <div class="col-6 col-lg-6 pl-5">
+
+                  <label class="userLabels">Last Name</label>
+                  <input type="text" class="form-control" placeholder="Enter your last name" name="lastname" th:value="${p.lastname}" required="required" disabled/>
+
+                  <label class="userLabels">password</label>
+                  <input type="password" class="form-control" name="password" placeholder="enter your password" th:value="${p.password}" required="required"/>
+                </div>
+              </div>
+              <div class="col-12 col-lg-12 pl-5">
+                <button type="submit" class="btnLogin mt-10 mb-10" th:href="@{/UserAccount}">Update</button>
+                <button type="reset" class="btnForgot mt-10 mb-10">Clear</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+  </div>
+</div>
+
+<script src="https://kit.fontawesome.com/4df5862945.js" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+</body>
+</html>
