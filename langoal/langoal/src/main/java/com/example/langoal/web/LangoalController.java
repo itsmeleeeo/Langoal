@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import javax.management.Query;
-import javax.persistence.Convert;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @SessionAttributes({"a", "e"})
@@ -65,11 +62,6 @@ public class LangoalController {
         return "FindPartner";
     }
 
-    @RequestMapping(value = "/settings", method = RequestMethod.GET)
-    public String UserSettings() {
-        return "UserSettings";
-    }
-
     @RequestMapping(value="/student", method = RequestMethod.GET)
     public String RegisterStudent(Model model) {
         model.addAttribute("user", new User());
@@ -82,9 +74,132 @@ public class LangoalController {
         return "RegisterTutor";
     }
 
-    @RequestMapping(value = "/verification", method = RequestMethod.GET)
+    @RequestMapping(value = "/accountverification", method = RequestMethod.GET)
     public String EmailVerification(){
-        return "EmailVerification";
+        return "AccountVerification";
+    }
+
+    @RequestMapping(value = "/account", method = RequestMethod.POST)
+    public String accountinfo(Model model, User user, Tutor tutor, @RequestParam(name = "email") String userEmail, String tutorEmail) {
+        userEmail = user.getEmail();
+        tutorEmail = tutor.getEmail();
+        List<User> users;
+        List<Tutor> tutors;
+
+        users = userRepository.findUserByEmail(userEmail);
+        tutors = tutorRepository.findUserByEmail(tutorEmail);
+
+        if(users.size() == 1) {
+            model.addAttribute("listUsers", users);
+            return "AccountSettings";
+        } else if(tutors.size() == 1){
+            model.addAttribute("listUsers", tutors);
+            return "AccountSettings";
+        }
+        return "UserAccount";
+    }
+
+    @RequestMapping(value = "/settingsverification", method = RequestMethod.GET)
+    public String settingsverification() {
+        return "SettingsVerification";
+    }
+
+    @RequestMapping(value = "settings", method = RequestMethod.GET)
+    public String settings(Model model, User user, Tutor tutor, @RequestParam(name = "email") String userEmail, String tutorEmail) {
+        userEmail = user.getEmail();
+        tutorEmail = tutor.getEmail();
+        List<User> users;
+        List<Tutor> tutors;
+
+        users = userRepository.findUserByEmail(userEmail);
+        tutors = tutorRepository.findUserByEmail(tutorEmail);
+
+        if(users.size() == 1) {
+            model.addAttribute("listUsers", users);
+            return "UserSettings";
+        } else if(tutors.size() == 1){
+            model.addAttribute("listUsers", tutors);
+            return "TutorSettings";
+        }
+        return "UserAccount";
+    }
+
+    @RequestMapping(value="/passwordchange", method = RequestMethod.GET)
+    public String passwordchange() {
+        return "ChangePassword";
+    }
+
+    @RequestMapping(value="/deleteaccount", method = RequestMethod.GET)
+    public String deleteaccount() {
+        return "DeleteVerification";
+    }
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    public String username() {
+
+        return "Username";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    public String delete(Model model, User user, Tutor tutor) {
+        List<User> users;
+        List<Tutor> tutors;
+        String userEmail = user.getEmail();
+        String tutorEmail = tutor.getEmail();
+
+        users = userRepository.findUserByEmail(userEmail);
+        tutors = tutorRepository.findUserByEmail(tutorEmail);
+
+        if(users.size() == 1) {
+            User userId = users.get(0);
+            long idToDelete = userId.getId();
+            userRepository.deleteById(idToDelete);
+        }
+
+        if(tutors.size() == 1) {
+            Tutor tutorId = tutors.get(0);
+            long idToDelete = tutorId.getId();
+            tutorRepository.deleteById(idToDelete);
+        }
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/chat", method = RequestMethod.GET)
+    public String Chat() {
+        return "Chat";
+    }
+    @RequestMapping(value = "/password", method = RequestMethod.POST)
+    public String password(Model model, User user, Tutor tutor) {
+        List<User> users;
+        List<Tutor> tutors;
+        String userEmail = user.getEmail();
+        String userPassword = user.getPassword();
+        String tutorEmail = tutor.getEmail();
+        String tutorPassword = tutor.getPassword();
+        String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
+
+        users = userRepository.findUserByEmail(userEmail);
+        tutors = tutorRepository.findUserByEmail(tutorEmail);
+
+
+        if(users.size() == 1) {
+            User passwordToChange = users.get(0);
+            String newPassword = passwordToChange.getPassword();
+            if(newPassword != userPassword) {
+                String password = hash + userPassword;
+                user.setPassword(password);
+               userRepository.save(user);
+            }
+        } else if (tutors.size() == 1) {
+            Tutor passwordToChange = tutors.get(0);
+            String newPassword = passwordToChange.getPassword();
+            if(newPassword != tutorPassword) {
+                String password = hash + tutorPassword;
+                tutor.setPassword(password);
+                tutorRepository.save(tutor);
+            }
+        }
+
+        return "UserAccount";
     }
 
     //POST REQUESTS
@@ -142,43 +257,37 @@ public class LangoalController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/account", method = RequestMethod.POST)
-    public String accountinfo(Model model, User user, Tutor tutor, @RequestParam(name = "email") String email) {
-        email = user.getEmail();
-        String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
+    @RequestMapping(value = "/username", method = RequestMethod.POST)
+    public String usernmame(Model model, User user, Tutor tutor) {
         List<User> users;
         List<Tutor> tutors;
-        String password;
-        Long phone;
-        String language;
+        String userEmail = user.getEmail();
+        String userUsername = user.getFirstname();
+        String tutorEmail = tutor.getEmail();
+        String tutorUsername = tutor.getFirstname();
 
-        users = userRepository.findUserByEmail(email);
-        tutors = tutorRepository.findUserByEmail(email);
+        users = userRepository.findUserByEmail(userEmail);
+        tutors = tutorRepository.findUserByEmail(tutorEmail);
 
-        if(users.size() == 1) {
-            model.addAttribute("listUsers", users);
-            return "AccountSettings";
-        } else if(tutors.size() == 1){
-            model.addAttribute("listUsers", tutors);
-            return "AccountSettings";
-        }
 
         if(users.size() == 1) {
-            password = user.getPassword();
-            phone = user.getPhone();
-            language = user.getNativelanguage();
-            password = hash + password;
-            user.setPassword(password);
-            userRepository.save(user);
+            User usernameToChange = users.get(0);
+            String newUsername = usernameToChange.getFirstname();
 
-        } else {
-            password = tutor.getPassword();
-            phone = tutor.getPhone();
-            language = tutor.getNativelanguage();
-            password = hash + password;
-            tutor.setPassword(password);
-            tutorRepository.save(tutor);
+            if(newUsername != userUsername) {
+                user.setFirstname(newUsername);
+                userRepository.save(user);
+            }
+        } else if (tutors.size() == 1) {
+            Tutor usernameToChange = tutors.get(0);
+            String newUsername = usernameToChange.getFirstname();
+
+            if(newUsername != tutorUsername) {
+                tutor.setFirstname(newUsername);
+                tutorRepository.save(tutor);
+            }
         }
+
         return "UserAccount";
     }
 }

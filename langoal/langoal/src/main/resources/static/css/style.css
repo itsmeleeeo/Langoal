@@ -73,6 +73,10 @@ h1,h2,h3,h4,h5,h6,p,label {
     margin-right: 30px;
 }
 
+.mb-0 {
+    margin-bottom: 0;
+}
+
 .mb-5 {
     margin-bottom: 5px;
 }
@@ -388,11 +392,11 @@ h1,h2,h3,h4,h5,h6,p,label {
   }
   
   .user-settings li {
-    border-bottom: 1px solid rgba(54, 53, 55, 0.3);
+    /*border-bottom: 1px solid rgba(54, 53, 55, 0.3);*/
     font-size: 25px;
     width: 100%;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
   }
   
   .main-page-span {
@@ -486,4 +490,23 @@ h1,h2,h3,h4,h5,h6,p,label {
     background-color: #ed7d3a;
     color: white;
 
+}
+.btnMethod{
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    color: var(--bgColor);
+    background-color: var(--sideBar);
+    font-family: 'Quicksand';
+}
+
+.btnUsername{
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    color: var(--bgColor);
+    background-color: var(--modalColor);
+    font-family: 'Quicksand';
 }

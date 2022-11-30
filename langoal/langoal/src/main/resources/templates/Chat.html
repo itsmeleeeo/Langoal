@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Langoal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body class="loginBody">
+<div class="container-fluid dsp-flex">
+  <div class="row">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="bgModal">
+        <div id="username-page">
+          <div class="username-page-container">
+            <h1 class="title">Type your username</h1>
+            <form id="usernameForm" name="usernameForm">
+              <div class="form-group">
+                <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+              </div>
+              <div class="form-group">
+                <button type="submit">Start Chatting</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div id="chat-page" class="hidden">
+          <div class="chat-container">
+            <div class="chat-header">
+              <h2>Langoal Chat box</h2>
+            </div>
+            <div class="connecting">Connecting...</div>
+            <ul id="messageArea"></ul>
+            <form id="messageForm" name="messageForm">
+              <div class="form-group">
+                <div class="input-group clearfix">
+                  <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+                  <button type="submit">Send</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{Chat.js}"></script>
+</body>
+</html>

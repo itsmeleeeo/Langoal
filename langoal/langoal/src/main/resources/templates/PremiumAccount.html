@@ -23,7 +23,7 @@
                 class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start navigation"
         >
           <li class="nav-item mb-2 w-100">
-            <a th:href="@{/account}" class="nav-link align-middle px-0">
+            <a th:href="@{/accountverification}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-user"></i>
               <span class="nav-label">ACCOUNT</span>
             </a>
@@ -42,13 +42,13 @@
             </a>
           </li>
           <li class="nav-item mb-2">
-            <a th:href="@{/settings}" class="nav-link align-middle px-0">
+            <a th:href="@{/settingsverification}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-gear"></i>
               <span class="nav-label">SETTINGS</span>
             </a>
           </li>
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link align-middle px-0">
+            <a th:href="@{/}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
               <span class="nav-label">LOG OUT</span>
             </a>
@@ -104,9 +104,7 @@
               <h2 class="main-page-h">GET PREMIUM </h2>
               <div class="d-flex flex-row justify-content-start">
                 <p class="main-page-p align-self-center">Get rid of the ads </p>
-                <span class="align-self-center main-page-span">
-                                      <img src="img/arrow.png" alt="">
-                                  </span>
+                <a th:href="@{/payment}">Become a Premium User</a>
               </div>
             </div>
           </div>

@@ -17,13 +17,13 @@
     <div class="col-2 border sidebar">
       <div class="d-flex flex-column">
         <div class="row justify-content-center m-3">
-          <a th:href="@{/dashboard}" class="logo accountCreate"> Langoal </a>
+          <a th:href="@{/dashboard}" class="logo text-decoration-none"> Langoal </a>
         </div>
         <ul
                 class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start navigation"
         >
           <li class="nav-item mb-2 w-100">
-            <a th:href="@{/verification}" class="nav-link align-middle px-0">
+            <a th:href="@{/accountverification}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-user"></i>
               <span class="nav-label">ACCOUNT</span>
             </a>
@@ -42,13 +42,13 @@
             </a>
           </li>
           <li class="nav-item mb-2">
-            <a th:href="@{/settings}" class="nav-link align-middle px-0">
+            <a th:href="@{/settingsverification}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-gear"></i>
               <span class="nav-label">SETTINGS</span>
             </a>
           </li>
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link align-middle px-0">
+            <a th:href="@{/}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
               <span class="nav-label">LOG OUT</span>
             </a>
