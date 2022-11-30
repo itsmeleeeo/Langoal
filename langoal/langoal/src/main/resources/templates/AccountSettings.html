@@ -23,7 +23,7 @@
                 class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start navigation"
         >
           <li class="nav-item mb-2 w-100">
-            <a th:href="@{/account}" class="nav-link align-middle px-0">
+            <a th:href="@{/accountverification}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-user"></i>
               <span class="nav-label">ACCOUNT</span>
             </a>
@@ -42,13 +42,13 @@
             </a>
           </li>
           <li class="nav-item mb-2">
-            <a th:href="@{/settings}" class="nav-link align-middle px-0">
+            <a th:href="@{/settingsverification}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-gear"></i>
               <span class="nav-label">SETTINGS</span>
             </a>
           </li>
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link align-middle px-0">
+            <a th:href="@{/}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
               <span class="nav-label">LOG OUT</span>
             </a>
@@ -71,13 +71,7 @@
                   <input type="text" class="form-control" name="firstname" th:value="${p.firstname}" placeholder="Enter your first name" required="required" disabled/>
 
                   <label class="userLabels">Phone</label>
-                  <input type="tel" class="form-control" name="phone" placeholder="(xxx)xxx-xxxx" th:value="${p.phone}" required="required" maxlength="9" autocomplete="off" />
-
-                  <label class="userLabels">Native Language</label>
-                  <select class="form-control" th:field="*{user.nativelanguage}" id="nativelanguage">
-                    <option value="0">Select language</option>
-                    <option th:each="user:${T(com.example.langoal.entities.Languages).values()}" th:value="${user}" th:text="${user}"></option>
-                  </select>
+                  <input type="tel" class="form-control" name="phone" placeholder="(xxx)xxx-xxxx" th:value="${p.phone}" required="required" maxlength="9" autocomplete="off" disabled/>
                 </div>
 
                 <div class="col-6 col-lg-6 pl-5">
@@ -85,13 +79,9 @@
                   <label class="userLabels">Last Name</label>
                   <input type="text" class="form-control" placeholder="Enter your last name" name="lastname" th:value="${p.lastname}" required="required" disabled/>
 
-                  <label class="userLabels">password</label>
-                  <input type="password" class="form-control" name="password" placeholder="enter your password" th:value="${p.password}" required="required"/>
+                  <label class="userLabels">Native Language</label>
+                  <input type="text" class="form-control" name="nativelanguage" th:value="${p.nativelanguage}" required="required" disabled/>
                 </div>
-              </div>
-              <div class="col-12 col-lg-12 pl-5">
-                <button type="submit" class="btnLogin mt-10 mb-10" th:href="@{/UserAccount}">Update</button>
-                <button type="reset" class="btnForgot mt-10 mb-10">Clear</button>
               </div>
             </form>
           </div>
