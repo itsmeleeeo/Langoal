@@ -308,6 +308,7 @@ h1,h2,h3,h4,h5,h6,p,label {
 
     background-color: rgba(237, 125, 58, 0.1);
 }
+
 /* user account */
 
 .user-container {
@@ -371,6 +372,14 @@ h1,h2,h3,h4,h5,h6,p,label {
     color: #363537;
     font-weight: bold;
     margin: 0;
+}
+
+.list_languages {
+    list-style: none;
+}
+
+.list_languages li {
+    margin-right: 20px;
   }
   
   .list_languages {
