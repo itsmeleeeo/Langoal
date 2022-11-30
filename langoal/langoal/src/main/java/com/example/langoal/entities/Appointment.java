@@ -1,6 +1,7 @@
 package com.example.langoal.entities;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,4 +19,12 @@ public class Appointment {
     private long id;
     private int userId;
     private int languageId;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    private Date date;
+
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(pattern = "HH:mm")
+    private Date time;
 }

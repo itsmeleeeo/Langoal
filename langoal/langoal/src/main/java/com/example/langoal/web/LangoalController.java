@@ -1,7 +1,9 @@
 package com.example.langoal.web;
 
+import com.example.langoal.entities.Appointment;
 import com.example.langoal.entities.Tutor;
 import com.example.langoal.entities.User;
+import com.example.langoal.repository.AppointmentRepository;
 import com.example.langoal.repository.TutorRepository;
 import com.example.langoal.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -10,10 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import javax.management.Query;
 import javax.persistence.Convert;
@@ -28,6 +27,8 @@ import java.util.List;
 public class LangoalController {
     @Autowired private UserRepository userRepository;
     @Autowired private TutorRepository tutorRepository;
+
+    @Autowired private  AppointmentRepository appointmentRepository;
     static int num = 0;
 
     //GET REQUESTS
@@ -51,11 +52,12 @@ public class LangoalController {
         return "UserAccount";
     }
 
-    @RequestMapping(value = "/findtutor", method = RequestMethod.GET)
+    @GetMapping(value = "/findtutor")
     public String FindTutor(Model model) {
         List<Tutor> tutors;
         tutors = tutorRepository.findAll();
         model.addAttribute("listTutors", tutors);
+        model.addAttribute("appointment", new Appointment());
         return "FindTutor";
     }
     
@@ -88,6 +90,19 @@ public class LangoalController {
     }
 
     //POST REQUESTS
+    @RequestMapping(value = "/appointment", method = RequestMethod.POST)
+    public String Appointment(Model model, Appointment appointment, BindingResult bindingResult, ModelMap mm, HttpSession session) {
+        if (bindingResult.hasErrors()) {
+            System.out.println("Errors: " + bindingResult.getAllErrors());
+            return "ThanksBooking";
+        } else {
+            appointment.setUserId(1);
+
+            appointmentRepository.save(appointment);
+            return "ThanksBooking";
+        }
+    }
+    
 
     @RequestMapping(value = "/student", method = RequestMethod.POST)
     public String Student(Model model, User user, BindingResult bindingResult, ModelMap mm, HttpSession session) {

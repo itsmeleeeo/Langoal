@@ -106,110 +106,15 @@
                 <div class="row mt-5 mb-2 flex-grow-1">
 
                     <div class="col d-flex flex-column m-3">
-                        <form method="post" th:action="@{appointment}">
-                            <h2 class="main-page-h">FIND A TUTOR</h2>
-                            <!-- SELECT LANGUAGE -->
+                        <h2 class="main-page-h">Thank you for booking!</h2>
 
-                            <div class="dropdown mt-4">
-                                <a
-                                        href="#"
-                                        class="dropdown-toggle toggle"
-                                        data-bs-toggle="dropdown"
-                                >Select Language</a
-                                >
-
-                                <!--                  <div class="dropdown-menu language_list">-->
-                                <select class="dropdown-menu language_list" name="languageId">
-                                    <option th:value="${appointment.languageId}" class="dropdown-item">English</option>
-                                    <option th:value="${appointment.languageId}" class="dropdown-item">Mandarin
-                                        Chinese
-                                    </option>
-                                    <option value="3" class="dropdown-item">Hindi</option>
-                                    <option value="4" class="dropdown-item">Spanish</option>
-                                    <option value="5" class="dropdown-item">French</option>
-                                    <option value="6" class="dropdown-item">Korean</option>
-                                    <option value="7" class="dropdown-item">Bengali</option>
-                                    <option value="8" class="dropdown-item">Portuguese</option>
-                                    <option value="9" class="dropdown-item">Indonesian</option>
-                                </select>
-                            </div>
-
-                            <!-- SELECT TIME -->
-
-
-                            <div class="d-flex flex-row justify-content-between mt-5">
-                                <div class="select-time">
-                                    <p>Select Time</p>
-                                </div>
-                                <div class="mr-3">
-                                    <input
-                                            class="time-toogle"
-                                            id="appt-time"
-                                            type="time"
-                                            name="time"
-                                            required
-                                            pattern="[0-9]{2}:[0-9]{2}"
-                                            th:value="${appointment.time}"
-                                    />
-                                    <span class="validity"></span>
-                                    <span th:errors="${appointment.time}"></span>
-                                </div>
-                            </div>
-
-                            <!-- SELECT DATE -->
-                            <div class="d-flex flex-row mt-5 justify-content-between select-date">
-                                <div>
-                                    <p>Select Date</p>
-                                </div>
-                                <div>
-                                    <input id="datepicker" name="date" type="text" th:value="${appointment.date}"/>
-                                    <span th:errors="${appointment.date}"></span>
-                                </div>
-                            </div>
-
-                            <div class="col-3 m-3 mt-5 align-self-center">
-                                <button type="submit" class="btn-submit" th:href="@{/findtutor}">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- TUTOR LIST -->
-                    <div class="col d-flex flex-column partner mb-5">
-                        <div class="col d-flex justify-content-between" th:each="tutor:${listTutors}">
-                            <div
-                                    class="col-4 m-4 d-flex flex-column justify-content-center"
-                            >
-                                <img
-                                        class="tutor-picture"
-                                        src="@{/tutorPicture.png}"
-                                        alt=""
-                                />
-                            </div>
-                            <div class="col-3 align-self-center">
-                                <p class="main-page-p" th:text="${tutor.getFirstname()}"></p>
-                            </div>
-                            <div
-                                    class="col-3 m-3 d-flex flex-column justify-content-center"
-                            >
-                                <p class="main-page-p align-self-center mb-3"
-                                   th:text="${tutor.getNativelanguage()}"></p>
-                                <button
-                                        type="button"
-                                        class="btn-confirm ml-5 align-self-bottom"
-                                >
-                                    Add
-                                </button>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
             </div>
         </div>
 
-
     </div>
-
 </div>
 
 <script
