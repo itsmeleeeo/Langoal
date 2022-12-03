@@ -221,7 +221,6 @@ public class LangoalController {
             System.out.println("Errors: " + bindingResult.getAllErrors());
             return "ThanksBooking";
         } else {
-            //appointment.setUserId(1);
 
             appointmentRepository.save(appointment);
             return "ThanksBooking";

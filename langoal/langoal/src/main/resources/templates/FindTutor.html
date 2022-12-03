@@ -78,7 +78,7 @@
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="#" class="nav-link align-middle px-0">
+                <a th:href="@{/findtutor}" class="nav-link align-middle px-0">
                     <i class="fa-regular fa-calendar-check"></i>
                     <span class="nav-label">BOOK SESSION</span>
                 </a>
@@ -110,29 +110,41 @@
                             <h2 class="main-page-h">FIND A TUTOR</h2>
                             <!-- SELECT LANGUAGE -->
 
-                            <div class="dropdown mt-4">
-                                <a
-                                        href="#"
-                                        class="dropdown-toggle toggle"
-                                        data-bs-toggle="dropdown"
-                                >Select Language</a
-                                >
-
-                                <!--                  <div class="dropdown-menu language_list">-->
-                                <select class="dropdown-menu language_list" name="languageId">
-                                    <option th:value="${appointment.languageId}" class="dropdown-item">English</option>
-                                    <option th:value="${appointment.languageId}" class="dropdown-item">Mandarin
-                                        Chinese
-                                    </option>
-                                    <option value="3" class="dropdown-item">Hindi</option>
-                                    <option value="4" class="dropdown-item">Spanish</option>
-                                    <option value="5" class="dropdown-item">French</option>
-                                    <option value="6" class="dropdown-item">Korean</option>
-                                    <option value="7" class="dropdown-item">Bengali</option>
-                                    <option value="8" class="dropdown-item">Portuguese</option>
-                                    <option value="9" class="dropdown-item">Indonesian</option>
-                                </select>
+                            <div>
+                                <label for="lname">Please type language you wish to learn:</label><br>
+                                <input type="text" id="lname" name="nativelanguage" th:value="${appointment.nativelanguage}">
+                                <span th:errors="${appointment.nativelanguage}"></span>
                             </div>
+
+                            <div>
+                                <label for="lname">Please type tutor's ID:</label><br>
+                                <input type="text" id="idname" name="tutor_id" th:value="${appointment.tutorId}">
+                                <span th:errors="${appointment.tutorId}"></span>
+                            </div>
+
+<!--                            <div class="dropdown mt-4">-->
+<!--                                <a-->
+<!--                                        href="#"-->
+<!--                                        class="dropdown-toggle toggle"-->
+<!--                                        data-bs-toggle="dropdown"-->
+<!--                                >Select Language</a-->
+<!--                                >-->
+
+<!--                                &lt;!&ndash;                  <div class="dropdown-menu language_list">&ndash;&gt;-->
+<!--                                <select class="dropdown-menu language_list" name="languageId">-->
+<!--                                    <option th:value="${appointment.languageId}" class="dropdown-item">English</option>-->
+<!--                                    <option th:value="${appointment.languageId}" class="dropdown-item">Mandarin-->
+<!--                                        Chinese-->
+<!--                                    </option>-->
+<!--                                    <option value="3" class="dropdown-item">Hindi</option>-->
+<!--                                    <option value="4" class="dropdown-item">Spanish</option>-->
+<!--                                    <option value="5" class="dropdown-item">French</option>-->
+<!--                                    <option value="6" class="dropdown-item">Korean</option>-->
+<!--                                    <option value="7" class="dropdown-item">Bengali</option>-->
+<!--                                    <option value="8" class="dropdown-item">Portuguese</option>-->
+<!--                                    <option value="9" class="dropdown-item">Indonesian</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
 
                             <!-- SELECT TIME -->
 
@@ -179,13 +191,11 @@
                             <div
                                     class="col-4 m-4 d-flex flex-column justify-content-center"
                             >
-                                <img
-                                        class="tutor-picture"
-                                        src="@{/tutorPicture.png}"
-                                        alt=""
-                                />
+                                <i class="fa-solid fa-user" style="font-size: 40px"></i>
                             </div>
                             <div class="col-3 align-self-center">
+
+                                <p class="main-page-p" th:text="${'Id: ' + tutor.getId()}"></p>
                                 <p class="main-page-p" th:text="${tutor.getFirstname()}"></p>
                             </div>
                             <div
@@ -193,12 +203,8 @@
                             >
                                 <p class="main-page-p align-self-center mb-3"
                                    th:text="${tutor.getNativelanguage()}"></p>
-                                <button
-                                        type="button"
-                                        class="btn-confirm ml-5 align-self-bottom"
-                                >
-                                    Add
-                                </button>
+                                <p class="main-page-p align-self-center mb-3"
+                                   th:text="${tutor.getPrice() + ' $'}"></p>
                             </div>
                         </div>
                     </div>
