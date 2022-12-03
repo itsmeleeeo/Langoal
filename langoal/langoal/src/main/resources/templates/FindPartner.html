@@ -6,11 +6,11 @@
   <title>Langoal</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link th:href="@{/css/style.css}" rel="stylesheet">
   <link
           href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
           rel="stylesheet"
   />
+  <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
 
@@ -27,7 +27,7 @@
                 class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start navigation"
         >
           <li class="nav-item mb-2 w-100">
-            <a th:href="@{/account}" class="nav-link align-middle px-0">
+            <a th:href="@{/accountverification}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-user"></i>
               <span class="nav-label">ACCOUNT</span>
             </a>
@@ -45,14 +45,27 @@
               <span class="nav-label">GET PREMIUM</span>
             </a>
           </li>
+
           <li class="nav-item mb-2">
-            <a th:href="@{/settings}" class="nav-link align-middle px-0">
+            <a th:href="@{/chat}" class="nav-link align-middle px-0">
+              <i class="fa-solid fa-comments"></i>
+              <span class="nav-label">CHATS</span>
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="#" class="nav-link align-middle px-0">
+              <i class="fa-regular fa-calendar-check"></i>
+              <span class="nav-label">BOOK SESSION</span>
+            </a>
+          </li>
+          <li class="nav-item mb-2">
+            <a th:href="@{/settingsverification}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-gear"></i>
               <span class="nav-label">SETTINGS</span>
             </a>
           </li>
           <li class="nav-item mb-2">
-            <a href="#" class="nav-link align-middle px-0">
+            <a th:href="@{/}" class="nav-link align-middle px-0">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
               <span class="nav-label">LOG OUT</span>
             </a>
@@ -69,93 +82,28 @@
             <div class="row mt-5 mb-2 flex-grow-1">
               <div class="col d-flex flex-column">
                 <h2 class="main-page-h">FIND A PARTNER TO LEARN WITH!</h2>
-
-                <div class="dropdown mt-4">
-                  
-                    <a
-                      href="#"
-                      class="dropdown-toggle toggle"
-                      data-bs-toggle="dropdown"
-                      >Select Language</a
-                    >
-                 
-                  <div class="dropdown-menu language_list">
-                    <a href="#" class="dropdown-item">English</a>
-                    <a href="#" class="dropdown-item">Mandarin Chinese</a>
-                    <a href="#" class="dropdown-item">Hindi</a>
-                    <a href="#" class="dropdown-item">Spanish</a>
-                    <a href="#" class="dropdown-item">French</a>
-                    <a href="#" class="dropdown-item">Korean</a>
-                    <a href="#" class="dropdown-item">Bengali</a>
-                    <a href="#" class="dropdown-item">Portuguese</a>
-                    <a href="#" class="dropdown-item">Indonesian</a>
-                  </div>
-                </div>
               </div>
 
               <!-- PARTNERS LIST -->
-              <div class="col d-flex flex-column partner mb-5">
-                <div class="col d-flex justify-content-between">
-                  <div class="col-4 m-3">
-                    <img src="img/tutorPicture.png" alt="" />
-                  </div>
-                  <div class="col-3 align-self-center">
-                    <p class="main-page-p">Victor Lun</p>
-                  </div>
-                  <div class="col-3 m-3 align-self-center">
-                    <button type="button" class="btn-confirm ml-5">Add</button>
-                  </div>
-                </div>
-
-                <div class="col d-flex justify-content-between">
-                  <div class="col-4 m-3">
-                    <img src="img/tutorPicture.png" alt="" />
-                  </div>
-                  <div class="col-3 align-self-center">
-                    <p class="main-page-p">Victor Lun</p>
-                  </div>
-                  <div class="col-3 m-3 align-self-center">
-                    <button type="button" class="btn-confirm ml-5">Add</button>
-                  </div>
-                </div>
-
-                <div class="col d-flex justify-content-between">
-                  <div class="col-4 m-3">
-                    <img src="img/tutorPicture.png" alt="" />
-                  </div>
-                  <div class="col-3 align-self-center">
-                    <p class="main-page-p">Victor Lun</p>
-                  </div>
-                  <div class="col-3 m-3 align-self-center">
-                    <button type="button" class="btn-confirm ml-5">Add</button>
-                  </div>
-                </div>
-
-                <div class="col d-flex justify-content-between">
-                  <div class="col-4 m-3">
-                    <img src="img/tutorPicture.png" alt="" />
-                  </div>
-                  <div class="col-3 align-self-center">
-                    <p class="main-page-p">Victor Lun</p>
-                  </div>
-                  <div class="col-3 m-3 align-self-center">
-                    <button type="button" class="btn-confirm ml-5">Add</button>
-                  </div>
-                </div>
-
-                <div class="col d-flex justify-content-between">
-                  <div class="col-4 m-3">
-                    <img src="img/tutorPicture.png" alt="" />
-                  </div>
-                  <div class="col-3 align-self-center">
-                    <p class="main-page-p">Victor Lun</p>
-                  </div>
-                  <div class="col-3 m-3 align-self-center">
-                    <button type="button" class="btn-confirm ml-5">Add</button>
-                  </div>
-                </div>
-
-              </div>
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Language Spoken</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="p:${listUsers}">
+                  <td th:text="${p.firstname}"></td>
+                  <td th:text="${p.email}"></td>
+                  <td th:text="${p.nativelanguage}"></td>
+                  <td>
+                    <a class="btnChat" th:href="@{/chat}">Chat</a>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 

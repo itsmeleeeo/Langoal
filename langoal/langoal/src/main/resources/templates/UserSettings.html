@@ -27,7 +27,7 @@
                       class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start navigation"
               >
                   <li class="nav-item mb-2 w-100">
-                      <a th:href="@{/account}" class="nav-link align-middle px-0">
+                      <a th:href="@{/accountverification}" class="nav-link align-middle px-0">
                           <i class="fa-solid fa-user"></i>
                           <span class="nav-label">ACCOUNT</span>
                       </a>
@@ -45,14 +45,27 @@
                           <span class="nav-label">GET PREMIUM</span>
                       </a>
                   </li>
+
                   <li class="nav-item mb-2">
-                      <a th:href="@{/settings}" class="nav-link align-middle px-0">
+                      <a th:href="@{/chat}" class="nav-link align-middle px-0">
+                          <i class="fa-solid fa-comments"></i>
+                          <span class="nav-label">CHATS</span>
+                      </a>
+                  </li>
+                  <li class="nav-item mb-2">
+                      <a href="#" class="nav-link align-middle px-0">
+                          <i class="fa-regular fa-calendar-check"></i>
+                          <span class="nav-label">BOOK SESSION</span>
+                      </a>
+                  </li>
+                  <li class="nav-item mb-2">
+                      <a th:href="@{/settingsverification}" class="nav-link align-middle px-0">
                           <i class="fa-solid fa-gear"></i>
                           <span class="nav-label">SETTINGS</span>
                       </a>
                   </li>
                   <li class="nav-item mb-2">
-                      <a href="#" class="nav-link align-middle px-0">
+                      <a th:href="@{/}" class="nav-link align-middle px-0">
                           <i class="fa-solid fa-arrow-right-from-bracket"></i>
                           <span class="nav-label">LOG OUT</span>
                       </a>
@@ -68,49 +81,46 @@
             <!-- USER SETTINGS -->
             <div class="row">
                 <ul class="col d-flex flex-column user-settings">
-                    <div class="d-flex flex-row justify-content-between">
-                        <li>
-                            Payment method
-                        </li>
-                        <span class="align-self-baseline">
-                            <img src="img/arrow.png" alt="">
-                        </span>
-                    </div>
+<!--                    <div class="d-flex flex-row justify-content-between">-->
+<!--                        <li>-->
+<!--                            <i class="fa-solid fa-credit-card"></i>-->
+<!--                            Payment method-->
+<!--                        </li>-->
+<!--                        <button class="btnMethod">-->
+<!--                            <a th:href="@{/payment}" class="nav-link align-middle px-0">select payment method</a>-->
+<!--                        </button>-->
+<!--                    </div>-->
 
                     <div class="d-flex flex-row justify-content-between">
                         <li>
+                            <i class="fa-solid fa-key"></i>
                             Change password
                         </li>
-                        <span class="align-self-baseline">
-                            <img src="img/arrow.png" alt="">
-                        </span>
+
+                        <button class="btnLogin">
+                            <a th:href="@{/passwordchange}" class="nav-link align-middle px-0">Change your password</a>
+                        </button>
                     </div>
 
                     <div class="d-flex flex-row justify-content-between">
                         <li>
-                            Change user name
+                            <i class="fa-solid fa-users-gear"></i>
+                            Change username
                         </li>
-                        <span class="align-self-baseline">
-                            <img src="img/arrow.png" alt="">
-                        </span>
-                    </div>
 
+                        <button class="btnUsername">
+                            <a th:href="@{/username}" class="nav-link align-middle px-0">Change your username</a>
+                        </button>
+                    </div>
                     <div class="d-flex flex-row justify-content-between">
                         <li>
-                            Change email
+                            <i class="fa-solid fa-user-slash"></i>
+                            Delete Account
                         </li>
-                        <span class="align-self-baseline">
-                            <img src="img/arrow.png" alt="">
-                        </span>
-                    </div>
 
-                    <div class="d-flex flex-row justify-content-between">
-                        <li>
-                            Log Out
-                        </li>
-                        <span class="align-self-baseline">
-                            <img src="img/arrow.png" alt="">
-                        </span>
+                        <button class="btnForgot">
+                            <a th:href="@{/deleteaccount}" class="nav-link align-middle px-0">Delete Account</a>
+                        </button>
                     </div>
                 </ul>
             </div>

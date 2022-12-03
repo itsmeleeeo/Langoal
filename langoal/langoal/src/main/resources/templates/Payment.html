@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Langoal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body class="loginBody">
+<div class="container-fluid dsp-flex">
+    <div class="row">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+            <p>Enter your card information</p>
+            <div class="bgModal">
+                <form method="post" th:action="@{pay}">
+                    <label class="formLabels">Accepted Cards</label>
+                    <div>
+                        <i class="fa-brands fa-cc-visa"></i>
+                        <i class="fa-brands fa-cc-amex"></i>
+                        <i class="fa-brands fa-cc-mastercard"></i>
+                    </div>
+                    <div class="form-group">
+                        <label class="formLabels">
+                            total
+                        </label>
+                        <input type="text" class="form-control" id="price" name="price" placeholder="Enter amount" value="0.01"/>
+                        <label class="formLabels">
+                            Currency
+                        </label>
+                        <input type="text" class="form-control" id="currency" name="currency" placeholder="Enter currency"/>
+                        <label class="formLabels">
+                            Payment Method
+                        </label>
+                        <input type="text" class="form-control" id="method" name="method" placeholder="Payment Method"/>
+                        <label class="formLabels">
+                            Intent
+                        </label>
+                        <input type="text" class="form-control" id="intent" name="intent" placeholder="intent" value="sale" readonly/>
+                        <label class="formLabels">
+                            Payment Description
+                        </label>
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Payment Description"/>
+                    </div>
+                    <button type="submit" class="btnLogin mt-30 mb-10">Continue to checkout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+</script>
+</body>
+</html>

@@ -3,6 +3,7 @@ package com.example.langoal.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,4 +22,7 @@ public class User {
     private int ispremium;
     private String image;
     private String nativelanguage;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Appointment> appointment;
 }

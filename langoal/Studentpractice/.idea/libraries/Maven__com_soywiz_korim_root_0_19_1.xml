@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.soywiz:korim-root:0.19.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/soywiz/korim-root/0.19.1/korim-root-0.19.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/soywiz/korim-root/0.19.1/korim-root-0.19.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/soywiz/korim-root/0.19.1/korim-root-0.19.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

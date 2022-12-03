@@ -15,7 +15,7 @@
       <h1 class="langoalLogo">Langoal</h1>
       <p class="langoalSlogan">Register Tutor</p>
       <div class="bgModal">
-        <form method="post" th:action="@{tutor}">
+        <form method="post" th:action="@{tutor}" onsubmit="alert('Account Created')">
           <div class="form-group  dsp-flex ">
             <div class="col-6 col-lg-6 pr-5">
               <label class="formLabels">First Name</label>
@@ -42,7 +42,7 @@
               <label class="formLabels">Native Language</label>
               <select class="form-control" th:field="*{tutor.nativelanguage}" id="nativelanguage">
                 <option value="0">Select language</option>
-                <option th:each="user:${T(com.example.langoal.entities.Languages).values()}" th:value="${tutor}" th:text="${tutor}"></option>
+                <option th:each="tutor:${T(com.example.langoal.entities.Languages).values()}" th:value="${tutor}" th:text="${tutor}"></option>
               </select>
 
               <label class="formLabels">password</label>
