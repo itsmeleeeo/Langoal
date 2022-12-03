@@ -122,30 +122,6 @@
                                 <span th:errors="${appointment.tutorId}"></span>
                             </div>
 
-<!--                            <div class="dropdown mt-4">-->
-<!--                                <a-->
-<!--                                        href="#"-->
-<!--                                        class="dropdown-toggle toggle"-->
-<!--                                        data-bs-toggle="dropdown"-->
-<!--                                >Select Language</a-->
-<!--                                >-->
-
-<!--                                &lt;!&ndash;                  <div class="dropdown-menu language_list">&ndash;&gt;-->
-<!--                                <select class="dropdown-menu language_list" name="languageId">-->
-<!--                                    <option th:value="${appointment.languageId}" class="dropdown-item">English</option>-->
-<!--                                    <option th:value="${appointment.languageId}" class="dropdown-item">Mandarin-->
-<!--                                        Chinese-->
-<!--                                    </option>-->
-<!--                                    <option value="3" class="dropdown-item">Hindi</option>-->
-<!--                                    <option value="4" class="dropdown-item">Spanish</option>-->
-<!--                                    <option value="5" class="dropdown-item">French</option>-->
-<!--                                    <option value="6" class="dropdown-item">Korean</option>-->
-<!--                                    <option value="7" class="dropdown-item">Bengali</option>-->
-<!--                                    <option value="8" class="dropdown-item">Portuguese</option>-->
-<!--                                    <option value="9" class="dropdown-item">Indonesian</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-
                             <!-- SELECT TIME -->
 
 
@@ -180,7 +156,7 @@
                             </div>
 
                             <div class="col-3 m-3 mt-5 align-self-center">
-                                <button type="submit" class="btn-submit" th:href="@{/findtutor}">Submit</button>
+                                <button type="submit" class="btn-submit" th:href="@{/dashboard}">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -204,7 +180,7 @@
                                 <p class="main-page-p align-self-center mb-3"
                                    th:text="${tutor.getNativelanguage()}"></p>
                                 <p class="main-page-p align-self-center mb-3"
-                                   th:text="${tutor.getPrice() + ' $'}"></p>
+                                   th:text="${'$ ' + tutor.getPrice()}"></p>
                             </div>
                         </div>
                     </div>

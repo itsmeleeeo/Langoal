@@ -52,11 +52,25 @@ public class LangoalController {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String Dashboard() {
+    public String Dashboard(Model model) {
+        List<Appointment> appointments;
+        List<User> users;
+        List<Tutor> tutors;
+        int premiumUser = 0;
+        int premiumTutor = 0;
+
+        users = userRepository.findAll();
+        tutors = tutorRepository.findAll();
+        appointments = appointmentRepository.findAll();
+
+        model.addAttribute("listUsers", users);
+        model.addAttribute("listUsers", tutors);
+        model.addAttribute("listAppointments", appointments);
         return "UserAccount";
+
     }
 
-    @GetMapping(value = "/findtutor")
+    @RequestMapping(value = "/findtutor", method = RequestMethod.GET)
     public String FindTutor(Model model) {
         List<Tutor> tutors;
         tutors = tutorRepository.findAll();
@@ -64,7 +78,7 @@ public class LangoalController {
         model.addAttribute("appointment", new Appointment());
         return "FindTutor";
     }
-    
+
     @RequestMapping(value = "/findpartner", method = RequestMethod.GET)
     public String FindPartner(Model model) {
         List<User> users;
@@ -226,7 +240,7 @@ public class LangoalController {
             return "ThanksBooking";
         }
     }
-    
+
 
     @RequestMapping(value = "/student", method = RequestMethod.POST)
     public String Student(Model model, User user, BindingResult bindingResult, ModelMap mm, HttpSession session) {
@@ -311,7 +325,7 @@ public class LangoalController {
             return "redirect:/";
         }
     }
-    
+
     @RequestMapping(value = "/tutor", method = RequestMethod.POST)
     public String Tutor(Model model, Tutor tutor, BindingResult bindingResult, ModelMap mm, HttpSession session) {
         if(bindingResult.hasErrors()) {
