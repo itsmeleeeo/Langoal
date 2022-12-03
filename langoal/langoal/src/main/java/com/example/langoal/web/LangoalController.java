@@ -15,6 +15,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 @SessionAttributes({"a", "e"})
@@ -60,7 +67,10 @@ public class LangoalController {
     
     @RequestMapping(value = "/findpartner", method = RequestMethod.GET)
     public String FindPartner(Model model) {
-        model.addAttribute("user", new User());
+        List<User> users;
+
+        users = userRepository.findAll();
+        model.addAttribute("listUsers", users);
         return "FindPartner";
     }
 
@@ -211,7 +221,7 @@ public class LangoalController {
             System.out.println("Errors: " + bindingResult.getAllErrors());
             return "ThanksBooking";
         } else {
-            appointment.setUserId(1);
+            //appointment.setUserId(1);
 
             appointmentRepository.save(appointment);
             return "ThanksBooking";
@@ -226,6 +236,76 @@ public class LangoalController {
         } else {
             String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
             String password = user.getPassword();
+            String language = user.getNativelanguage();
+            String flag = "";
+            String encodedImage = null;
+
+            switch (language) {
+                case "portuguese" -> {
+                    flag = "src/main/resources/img/brazil.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    user.setImage(encodedImage);
+                    break;
+                }
+                case "cantonese", "mandarim" -> {
+                    flag = "src/main/resources/img/china.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    user.setImage(encodedImage);
+                    break;
+                }
+                case "german" -> {
+                    flag = "src/main/resources/img/german.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    user.setImage(encodedImage);
+                    break;
+                }
+                case "italian" -> {
+                    flag = "src/main/resources/img/italy.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    user.setImage(encodedImage);
+                    break;
+                }
+                case "japanese" -> {
+                    flag = "src/main/resources/img/japan.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    user.setImage(encodedImage);
+                    break;
+                }
+                case "russian" -> {
+                    flag = "src/main/resources/img/russia.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    user.setImage(encodedImage);
+                    break;
+                }
+                case "korean" -> {
+                    flag = "src/main/resources/img/southkorea.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    user.setImage(encodedImage);
+                    break;
+                }
+                case "spanish" -> {
+                    flag = "src/main/resources/img/spain.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    user.setImage(encodedImage);
+                    break;
+                }
+                default -> {
+                    flag = "src/main/resources/img/unitedkingdom.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    user.setImage(encodedImage);
+                    break;
+                }
+            }
+
             password = hash + password;
             user.setPassword(password);
             userRepository.save(user);
@@ -240,6 +320,76 @@ public class LangoalController {
         } else {
             String hash = "$2a$10$z.ySlIolTAHlz57POccaKe5Py5";
             String password = tutor.getPassword();
+            String language = tutor.getNativelanguage();
+            String flag = "";
+            String encodedImage = null;
+
+            switch (language) {
+                case "portuguese" -> {
+                    flag = "src/main/resources/img/brazil.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    tutor.setImage(encodedImage);
+                    break;
+                }
+                case "cantonese", "mandarim" -> {
+                    flag = "src/main/resources/img/china.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    tutor.setImage(encodedImage);
+                    break;
+                }
+                case "german" -> {
+                    flag = "src/main/resources/img/german.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    tutor.setImage(encodedImage);
+                    break;
+                }
+                case "italian" -> {
+                    flag = "src/main/resources/img/italy.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    tutor.setImage(encodedImage);
+                    break;
+                }
+                case "japanese" -> {
+                    flag = "src/main/resources/img/japan.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    tutor.setImage(encodedImage);
+                    break;
+                }
+                case "russian" -> {
+                    flag = "src/main/resources/img/russia.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    tutor.setImage(encodedImage);
+                    break;
+                }
+                case "korean" -> {
+                    flag = "src/main/resources/img/southkorea.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    tutor.setImage(encodedImage);
+                    break;
+                }
+                case "spanish" -> {
+                    flag = "src/main/resources/img/spain.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    tutor.setImage(encodedImage);
+                    break;
+                }
+                default -> {
+                    flag = "src/main/resources/img/unitedkingdom.png";
+                    byte[] bytes = flag.getBytes(StandardCharsets.UTF_8);
+                    encodedImage = Base64.getEncoder().encodeToString(bytes);
+                    tutor.setImage(encodedImage);
+                    break;
+                }
+            }
+
             password = hash + password;
             tutor.setPassword(password);
             tutorRepository.save(tutor);

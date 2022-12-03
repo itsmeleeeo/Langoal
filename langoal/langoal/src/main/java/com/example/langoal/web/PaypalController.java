@@ -26,32 +26,34 @@ public class PaypalController {
     }
     @RequestMapping(value = "/pay", method = RequestMethod.POST)
     public String PaymentProcess(@ModelAttribute("order") Order order) {
-       try {
-           Payment payment =  service.createPayment(order.getPrice(),order.getCurrency(),order.getMethod(), order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,"http://localhost:8080/" + SUCCESS_URL);
+        try {
+            Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
+                    order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,
+                    "http://localhost:8080/" + SUCCESS_URL);
+            for(Links link:payment.getLinks()) {
+                if(link.getRel().equals("approval_url")) {
+                    return "redirect:"+link.getHref();
+                }
+            }
 
-           for(Links link:payment.getLinks()) {
-               if(link.getRel().equals("approval_url")) {
-                   return "redirect:" + link.getHref();
-               }
-           }
+        } catch (PayPalRESTException e) {
 
-       } catch (PayPalRESTException e) {
-           e.printStackTrace();
-       }
-        return "Cancel";
+            e.printStackTrace();
+        }
+        return "index";
     }
 
     @RequestMapping(value = CANCEL_URL, method = RequestMethod.GET)
-    public String CancelPayment() {
+    public String cancelPay() {
         return "Cancel";
     }
 
     @RequestMapping(value = SUCCESS_URL, method = RequestMethod.GET)
-    public String successPayment(@RequestParam("paymentId") String paymentId, @RequestParam("PayerId") String payerId) {
+    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
         try {
             Payment payment = service.executePayment(paymentId, payerId);
             System.out.println(payment.toJSON());
-            if(payment.getState().equals("approved")) {
+            if (payment.getState().equals("approved")) {
                 return "Success";
             }
         } catch (PayPalRESTException e) {
